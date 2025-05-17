@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "558205228069",
+    "project_id": "makani-ecb0a",
+    "storage_bucket": "makani-ecb0a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558205228069:android:8b09c5bdeca6599aaedbcc",
+        "android_client_info": {
+          "package_name": "com.example.makani"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-sRiRU_cULiOzw1Jsmib6WcsvGU0SL-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
