@@ -34,6 +34,10 @@ class Assets {
   /// Assets/Images/box.svg
   static const String imagesBox = "Assets/Images/box.svg";
 
+  /// Assets for imagesBox2
+  /// Assets/Images/Box2.svg
+  static const String imagesBox2 = "Assets/Images/Box2.svg";
+
   /// Assets for imagesCard
   /// Assets/Images/card.jpg
   static const String imagesCard = "Assets/Images/card.jpg";

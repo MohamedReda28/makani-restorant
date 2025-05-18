@@ -10,19 +10,22 @@ class Iteminprofile extends StatelessWidget {
  final ItemProfileModel itemProfileModel;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SvgPicture.asset(itemProfileModel.icon),
-        SizedBox(width: 4.w,),
-        Text(
-          itemProfileModel.tittle,
-          style: AppStyle.semibold13.copyWith(color: const Color(0xFF949D9E)),
-        ),
-        const Spacer(),
-        SvgPicture.asset(Assets.imagesArowgo),
+    return GestureDetector(
+      onTap:itemProfileModel.onTap,
+      child: Row(
+        children: [
+          SvgPicture.asset(itemProfileModel.icon),
+          SizedBox(width: 4.w,),
+          Text(
+            itemProfileModel.tittle,
+            style: AppStyle.semibold13.copyWith(color: const Color(0xFF949D9E)),
+          ),
+          const Spacer(),
+          SvgPicture.asset(Assets.imagesArowgo),
 
 
-      ],
+        ],
+      ),
     );
   }
 }
