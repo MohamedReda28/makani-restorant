@@ -1,23 +1,19 @@
-import 'AddressOrder_entity.dart';
-import 'orderProductEntity.dart';
 
-class OrderEntity {
+
+class DisplayOrderEntity {
   final double totalPrice;
   final String uID;
   final String oID;
-  final AddressOrderEntity addressOrderEntity;
-  final List<OrderproductEntity> orderProductEntity;
-  final String payMethod;
+  final int numoforders;
   final String status;
+  final String date;
 
-  OrderEntity(
-      {required this.totalPrice,
-      required this.uID,
-      required this.oID,
-      required this.addressOrderEntity,
-      required this.orderProductEntity,
-      required this.status,
-      required this.payMethod,});
-
-
+  DisplayOrderEntity({
+    required this.totalPrice,
+    required this.date,
+    required this.uID,
+    required this.oID,
+    required this.status,
+    required this.numoforders,
+  });
 }

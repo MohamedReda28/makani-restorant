@@ -1,61 +1,41 @@
 
 import '../../domins/entitys/order entity.dart';
-import 'AddressOrder_model.dart';
-import 'orderProductModel.dart';
 
-class OrderModel {
+class DisplayOrderModel {
   final double totalPrice;
   final String uID;
   final String oID;
-  final AddressOrderModel addressOrderModel;
-  final List<Orderproductmodel> orderProductModel;
-  final String payMethod;
+  final int numoforders;
   final String status;
+  final String date;
 
-  OrderModel(
-      {required this.totalPrice,
+
+  DisplayOrderModel({required this.date,
+      required this.totalPrice,
       required this.uID,
       required this.oID,
-     required this.addressOrderModel,
       required this.status,
-      required this.orderProductModel,
-      required this.payMethod});
+      required this.numoforders});
 
-  factory OrderModel.fromJson(Map<String, dynamic> json) {
-    return OrderModel(
+  factory DisplayOrderModel.fromJson(Map<String, dynamic> json) {
+    return DisplayOrderModel(
       oID: json['oID'],
       totalPrice: json['totalPrice'],
       uID: json['uID'],
       status:  json['status'],
-      addressOrderModel: AddressOrderModel.fromJson(json['addressOrderModel']),
-      orderProductModel: List<Orderproductmodel>.from(
-          json['orderProductModel'].map((x) => Orderproductmodel.fromJson(x))),
-      payMethod: json['payMethod'],
+      date:json['date'],
+       numoforders: json ['orderProductModel'][0]['quantity'],
     );
   }
 
-  toJson() {
-    return {
-      'totalPrice': totalPrice,
-      'uID': uID,
-      'oID': oID, 
-      'status':  status,
-      'date': DateTime.now().toString(),
-      'addressOrderModel': addressOrderModel.toJson(),
-      'orderProductModel': orderProductModel.map((e) => e.toJson()).toList(),
-      'payMethod': payMethod,
-    
-    };
-  }
-  OrderEntity toEntity(){
-    return OrderEntity(
+  DisplayOrderEntity toEntity(){
+    return DisplayOrderEntity(
       oID:  oID,
       totalPrice: totalPrice,
       status: status,
+      date: date,
       uID: uID,
-      payMethod: payMethod, 
-      addressOrderEntity:  addressOrderModel.toEntity(),
-      orderProductEntity:  orderProductModel.map((e) => e.toEntity()).toList()
+      numoforders: numoforders,
       );
      
   }

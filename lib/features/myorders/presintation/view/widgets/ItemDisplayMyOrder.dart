@@ -4,9 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:makani/core/uitels/App_TextStyle.dart';
 import 'package:makani/core/uitels/app_images.dart';
 
-class Itemdisplaymyorder extends StatelessWidget {
-  const Itemdisplaymyorder({super.key});
+import '../../../domins/entitys/order entity.dart';
 
+class Itemdisplaymyorder extends StatelessWidget {
+  const Itemdisplaymyorder({super.key, required this.orderEntity});
+  final DisplayOrderEntity orderEntity;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,41 +20,46 @@ class Itemdisplaymyorder extends StatelessWidget {
       child: Row(
         children: [
           SvgPicture.asset(Assets.imagesBox2),
-          SizedBox(width: 12.w,),
+          SizedBox(
+            width: 12.w,
+          ),
           Column(
             children: [
               Text(
-                'طلب رقم: 1234567#',
-                style:AppStyle.bold13,
+                'طلب رقم: ${orderEntity.oID}',
+                style: AppStyle.bold13,
               ),
-              SizedBox(height: 6.h,),
-              Text(
-                'تم الطلب :22 مارس ,2024',
-                style: AppStyle.regular11.copyWith(color: const Color(0xFF949D9E))
+              SizedBox(
+                height: 6.h,
               ),
-              SizedBox(height: 6.h,),
-
-               Row(
+              Text('تم الطلب : ${orderEntity.date}',
+                  style: AppStyle.regular11
+                      .copyWith(color: const Color(0xFF949D9E))),
+              SizedBox(
+                height: 6.h,
+              ),
+              Row(
                 children: [
-                   Text.rich(
+                  Text.rich(
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: 'عدد الطلبات',
-                          style: AppStyle.regular13.copyWith(color:const Color(0xFF949D9E) )
-                        ),
+                            text: 'عدد الطلبات',
+                            style: AppStyle.regular13
+                                .copyWith(color: const Color(0xFF949D9E))),
                         TextSpan(
-                          text: ' : 10 ',
-                          style: AppStyle.bold13.copyWith(color: const Color(0xFF0C0D0D))
-                        ),
-
+                            text: ' : ${orderEntity.numoforders}',
+                            style: AppStyle.bold13
+                                .copyWith(color: const Color(0xFF0C0D0D))),
                       ],
                     ),
                   ),
-                  SizedBox(width: 18.w,),
-                  const Text(
-                    '250 جنية',
-                    style: TextStyle(
+                  SizedBox(
+                    width: 18.w,
+                  ),
+                   Text(
+                    '${orderEntity.totalPrice} جنية',
+                    style: const TextStyle(
                       color: Color(0xFF0C0D0D) /* Grayscale-950 */,
                       fontSize: 13,
                       fontFamily: 'Cairo',
@@ -61,12 +68,33 @@ class Itemdisplaymyorder extends StatelessWidget {
                   )
                 ],
               ),
-
-
             ],
           )
         ],
       ),
     );
+  }
+
+  String _formatDate(DateTime date) {
+    // يمكنك استخدام intl لو أردت ترجمة الشهر بالعربي
+    return '${date.day} ${_arabicMonthName(date.month)}, ${date.year}';
+  }
+
+  String _arabicMonthName(int month) {
+    const months = [
+      'يناير',
+      'فبراير',
+      'مارس',
+      'أبريل',
+      'مايو',
+      'يونيو',
+      'يوليو',
+      'أغسطس',
+      'سبتمبر',
+      'أكتوبر',
+      'نوفمبر',
+      'ديسمبر'
+    ];
+    return months[month - 1];
   }
 }
