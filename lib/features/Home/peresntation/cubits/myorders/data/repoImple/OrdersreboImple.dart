@@ -5,8 +5,8 @@ import 'package:dartz/dartz.dart';
 import 'package:makani/core/erroes/Failur.dart';
 import 'package:makani/core/services/services/DataBase_Serveces.dart';
 import 'package:makani/core/uitels/backend%20Impoint.dart';
-import 'package:makani/features/myorders/domins/entitys/order%20entity.dart';
-import 'package:makani/features/myorders/domins/repo/orderRebo.dart';
+import '../../domins/entitys/order entity.dart';
+import '../../domins/repo/orderRebo.dart';
 import '../models/order model.dart';
 
 

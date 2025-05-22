@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:makani/features/Home/peresntation/views/widgets/who%20_our.dart';
 import '../../../../../core/uitels/app_images.dart';
-import '../../../../myorders/presintation/view/myorderview.dart';
 import '../../../data/Models/ItemProfileModel.dart';
+import '../../cubits/myorders/presintation/view/myorderview.dart';
 import 'ItemInProfile.dart';
 
 class ListIteminprofile extends StatelessWidget {
@@ -20,7 +20,10 @@ class ListIteminprofile extends StatelessWidget {
       ItemProfileModel(
           icon: Assets.imagesHeart2, tittle: 'المفضلة', onTap: () {}),
       ItemProfileModel(
-          icon: Assets.imagesOurwho, tittle: 'من نحن', onTap: () {}),
+          icon: Assets.imagesOurwho, tittle: 'من نحن', onTap: () {
+        Navigator.pushNamed(context, WhoOur.routeName);
+
+      }),
     ];
     return SliverList.separated(
       itemCount: items.length,

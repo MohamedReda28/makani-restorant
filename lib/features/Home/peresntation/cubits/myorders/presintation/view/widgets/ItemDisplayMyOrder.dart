@@ -26,7 +26,7 @@ class Itemdisplaymyorder extends StatelessWidget {
           Column(
             children: [
               Text(
-                'طلب رقم: ${orderEntity.oID}',
+                'طلب رقم: ${orderEntity.ordernum}',
                 style: AppStyle.bold13,
               ),
               SizedBox(
@@ -57,7 +57,7 @@ class Itemdisplaymyorder extends StatelessWidget {
                   SizedBox(
                     width: 18.w,
                   ),
-                   Text(
+                  Text(
                     '${orderEntity.totalPrice} جنية',
                     style: const TextStyle(
                       color: Color(0xFF0C0D0D) /* Grayscale-950 */,
@@ -68,33 +68,24 @@ class Itemdisplaymyorder extends StatelessWidget {
                   )
                 ],
               ),
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                        text: 'الحاله',
+                        style: AppStyle.regular13
+                            .copyWith(color: const Color(0xFF949D9E))),
+                    TextSpan(
+                        text: ' : ${orderEntity.status}',
+                        style: AppStyle.bold13
+                            .copyWith(color: const Color(0xFF0C0D0D))),
+                  ],
+                ),
+              ),
             ],
           )
         ],
       ),
     );
-  }
-
-  String _formatDate(DateTime date) {
-    // يمكنك استخدام intl لو أردت ترجمة الشهر بالعربي
-    return '${date.day} ${_arabicMonthName(date.month)}, ${date.year}';
-  }
-
-  String _arabicMonthName(int month) {
-    const months = [
-      'يناير',
-      'فبراير',
-      'مارس',
-      'أبريل',
-      'مايو',
-      'يونيو',
-      'يوليو',
-      'أغسطس',
-      'سبتمبر',
-      'أكتوبر',
-      'نوفمبر',
-      'ديسمبر'
-    ];
-    return months[month - 1];
   }
 }

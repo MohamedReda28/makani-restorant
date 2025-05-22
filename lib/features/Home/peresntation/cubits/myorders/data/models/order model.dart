@@ -1,4 +1,5 @@
 
+
 import '../../domins/entitys/order entity.dart';
 
 class DisplayOrderModel {
@@ -8,6 +9,8 @@ class DisplayOrderModel {
   final int numoforders;
   final String status;
   final String date;
+  final String ordernum;
+
 
 
   DisplayOrderModel({required this.date,
@@ -15,15 +18,17 @@ class DisplayOrderModel {
       required this.uID,
       required this.oID,
       required this.status,
-      required this.numoforders});
+    required this.ordernum,
+    required this.numoforders});
 
   factory DisplayOrderModel.fromJson(Map<String, dynamic> json) {
     return DisplayOrderModel(
       oID: json['oID'],
       totalPrice: json['totalPrice'],
       uID: json['uID'],
-      status:  json['status'],
+      status: json['status'],
       date:json['date'],
+      ordernum:json['orderNumber'] ,
        numoforders: json ['orderProductModel'][0]['quantity'],
     );
   }
@@ -34,6 +39,7 @@ class DisplayOrderModel {
       totalPrice: totalPrice,
       status: status,
       date: date,
+      ordernum: ordernum,
       uID: uID,
       numoforders: numoforders,
       );

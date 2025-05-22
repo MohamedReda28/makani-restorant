@@ -9,7 +9,7 @@ import '../../../../core/services/services/DataBase_Serveces.dart';
 import '../../../../core/services/services/firebase_Auth_Servece.dart';
 import '../../../../core/services/services/shardpreferance_Singlton.dart';
 import '../../../../core/uitels/backend Impoint.dart';
-import '../../domain/entites/User entites.dart';
+import '../../domain/entites/UserEntites.dart';
 import '../../domain/repos/Auth Repo.dart';
 import '../Models/UserModel.dart';
 

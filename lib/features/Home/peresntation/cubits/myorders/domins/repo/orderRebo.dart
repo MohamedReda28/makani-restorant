@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:makani/features/myorders/domins/entitys/order%20entity.dart';
-import '../../../../core/erroes/Failur.dart';
+import '../../../../../../../core/erroes/Failur.dart';
+import '../entitys/order entity.dart';
 
 abstract class Ordersrebo{
 

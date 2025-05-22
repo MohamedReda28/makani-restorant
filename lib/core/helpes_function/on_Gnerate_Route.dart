@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:makani/core/entitys/ProductEntity.dart';
+import '../../features/Home/peresntation/cubits/myorders/presintation/view/myorderview.dart';
+import '../../features/Home/peresntation/views/widgets/who _our.dart';
 import '../../features/checkout/presintation/views/checkout_view.dart';
 import '../../features/auth/peresentation/views/Views/Best Salling view.dart';
 import '../../features/Home/domines/entites/CardEntity.dart';
@@ -11,7 +13,6 @@ import '../../features/auth/peresentation/views/ForgetPass.dart';
 import '../../features/auth/peresentation/views/SiginView.dart';
 import '../../features/auth/peresentation/views/SignupView.dart';
 import '../../features/displayaitem/presentarion/view/DispalyIrtem.dart';
-import '../../features/myorders/presintation/view/myorderview.dart';
 import '../../features/on_bording/peresentation/Vews/on_bordView.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -36,6 +37,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const Searchview());
     case Myorderview.routeName:
       return MaterialPageRoute(builder: (context) => const Myorderview());
+    case WhoOur.routeName:
+      return MaterialPageRoute(builder: (context) => const WhoOur());
     case DisplayItem.routeName:
       return MaterialPageRoute(builder: (context) => DisplayItem(
         productEntity: settings.arguments as ProductEntity,
