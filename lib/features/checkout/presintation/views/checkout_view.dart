@@ -28,7 +28,7 @@ class _Checkout_ViewState extends State<Checkout_View> {
     super.initState();
     orderEntity =OrderInputEntity(
       cartList: widget.cartItems,
-      uID: getUser().uid,
+      uID: getUser()!.uid,
     );
   }
   @override

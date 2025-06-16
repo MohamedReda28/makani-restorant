@@ -6,6 +6,8 @@ const kIsBordingViewSeen = 'IsBordingViewSeen';
 const kUserData = 'userData';
 const kpriceDelivary = 8;
 const kUserBox = 'user';
+const kUserdoc = 'user';
+
 
 
 

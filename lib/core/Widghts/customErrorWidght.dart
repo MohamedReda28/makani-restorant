@@ -8,7 +8,7 @@ class Customerrorwidght extends StatelessWidget {
     return Center(
       child: Text(
         text,
-        style: TextStyle(color: Colors.red),
+        style: const TextStyle(color: Colors.red),
       ),
     );
   }

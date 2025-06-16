@@ -7,6 +7,7 @@ import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import '../../../../../constsns.dart';
 import '../../../../../core/Widghts/Custom_Botton.dart';
 import '../../../../../core/helpes_function/BuildSnakBar.dart';
+import '../../../../Payment/presentation/view/paymentView.dart';
 import '../../../domines/entitys/Order_Entity.dart';
 import '../../../domines/entitys/paypal_payment_entity/paypal_payment_entity.dart';
 import '../../maneger/addProductCubit/order_cubit.dart';
@@ -93,9 +94,10 @@ class _Checkout_View_BodyState extends State<Checkout_View_Body> {
                 } else if (currentPageActive == 1) {
                   addressSection_Validation();
                 } else {
-                  var orderEntity = context.read<OrderInputEntity>();
-                  context.read<AddOrderCubit>().addOrder(orderEntity);
+                  // var orderEntity = context.read<OrderInputEntity>();
+                  // context.read<AddOrderCubit>().addOrder(orderEntity);
                   //processpayment(context);
+                  Navigator.pushNamed(context, Paymentview.routeName);
                 }
               }),
           const SizedBox(height: 32),

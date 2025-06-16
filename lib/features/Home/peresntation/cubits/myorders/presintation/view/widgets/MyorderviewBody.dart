@@ -18,7 +18,7 @@ class Myorderviewbody extends StatefulWidget {
 class _MyorderviewbodyState extends State<Myorderviewbody> {
   @override
   void initState() {
-    context.read<OrdersCubit>().getOrders(getUser().uid);
+    context.read<OrdersCubit>().getOrders(getUser()!.uid);
     super.initState();
   }
   @override

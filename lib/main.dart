@@ -11,13 +11,15 @@ import 'core/services/services/git_it_Service.dart';
 import 'core/services/services/shardpreferance_Singlton.dart';
 import 'core/uitels/App_Color.dart';
 import 'features/Splash/Presentation/Veiws/SpalshView.dart';
+import 'features/auth/domain/entites/UserEntites.dart';
 import 'firebase_options.dart';
 import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  await Hive.openBox(kUserBox);
+  Hive.registerAdapter(UserEntityAdapter());
+  await Hive.openBox<UserEntity>(kUserBox);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

@@ -33,6 +33,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg_provider: ^1.0.7
+  connectivity_plus: ^3.0.2
+  http: 
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   get_it: ^8.0.2

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:makani/core/entitys/ProductEntity.dart';
 import '../../features/Home/peresntation/cubits/myorders/presintation/view/myorderview.dart';
 import '../../features/Home/peresntation/views/widgets/who _our.dart';
+import '../../features/Payment/presentation/view/paymentView.dart';
 import '../../features/checkout/presintation/views/checkout_view.dart';
 import '../../features/auth/peresentation/views/Views/Best Salling view.dart';
 import '../../features/Home/domines/entites/CardEntity.dart';
@@ -37,6 +38,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const Searchview());
     case Myorderview.routeName:
       return MaterialPageRoute(builder: (context) => const Myorderview());
+    case Paymentview.routeName:
+      return MaterialPageRoute(builder: (context) => const Paymentview());
     case WhoOur.routeName:
       return MaterialPageRoute(builder: (context) => const WhoOur());
     case DisplayItem.routeName:

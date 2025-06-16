@@ -1,13 +1,12 @@
-import 'dart:convert';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hive/hive.dart';
+import 'package:makani/core/services/services/DataBase_Serveces.dart';
 import '../../../../constsns.dart';
 import '../../../../core/erroes/Failur.dart';
 import '../../../../core/erroes/excaptins.dart';
-import '../../../../core/services/services/DataBase_Serveces.dart';
 import '../../../../core/services/services/firebase_Auth_Servece.dart';
-import '../../../../core/services/services/shardpreferance_Singlton.dart';
 import '../../../../core/uitels/backend Impoint.dart';
 import '../../domain/entites/UserEntites.dart';
 import '../../domain/repos/Auth Repo.dart';
@@ -124,6 +123,7 @@ class Repoimplemantation extends AuthRepo {
       path: BackEndImpoint.addUserData,
       data: UserModel.fromEntity(user).toMap(),
       documentId: user.uid,
+
     );
   }
 
@@ -136,8 +136,10 @@ class Repoimplemantation extends AuthRepo {
 
   @override
   Future saveUserData({required UserEntity user}) async {
-    var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
-    await SharPref.setString(kUserData, jsonData);
+    // var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
+    // await SharPref.setString(kUserData, jsonData);
+    final userBox = Hive.box<UserEntity>(kUserBox);
+    await userBox.put(kUserdoc, user);
   }
 
   Future<Either<Failur, void>> sendPasswordResetEmail(

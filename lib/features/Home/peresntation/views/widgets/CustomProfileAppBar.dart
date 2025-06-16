@@ -11,10 +11,10 @@ class CustomProfileAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
-        getUser().name,
+        getUser()!.name,
         style: AppStyle.bold16,
       ),
-      subtitle: Text(getUser().email,
+      subtitle: Text(getUser()!.email,
           style: AppStyle.regular16.copyWith(
             color: const Color(0xFF949D9E),
           )),

@@ -39,6 +39,7 @@ class _SplashVeiwState extends State<SplashVeiw> {
 
           if (isloggedIn) {
             Navigator.pushReplacementNamed(context, MainView.routeName);
+
           } else {
             Navigator.pushReplacementNamed(context, SiginView.routeName);
           }

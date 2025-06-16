@@ -15,7 +15,7 @@ class CustomHomeAppbar extends StatelessWidget {
             color: const Color(0xFF949D9E),
           )),
       subtitle: Text(
-        getUser().name,
+        getUser()!.name,
         style: AppStyle.bold16,
       ),
       leading: Image.asset(Assets.imagesUseravatar),

@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
@@ -8,8 +7,8 @@ part 'search_product_state.dart';
 
 class SearchProductCubit extends Cubit<SearchProductState> {
   SearchProductCubit(this.productRepo) : super(SearchProductInitial());
-    final ProductRepo productRepo;
-    
+  final ProductRepo productRepo;
+
   //   Future<void> searchProductsByName({required String productName}) async {
   //   emit(SearchProductInitial());
   //   final result = await productRepo.searchProductsByName(productName: productName);
@@ -28,14 +27,12 @@ class SearchProductCubit extends Cubit<SearchProductState> {
       return;
     }
 
-    final result = await productRepo.searchProductsByName(productName: productName);
+    final result =
+        await productRepo.searchProductsByName(productName: productName);
 
     result.fold(
-          (failure) => emit(SearchProductFaluir(errorMessage: failure.message)),
-          (products) => emit(SearchProductSuccess(products: products)),
+      (failure) => emit(SearchProductFaluir(errorMessage: failure.message)),
+      (products) => emit(SearchProductSuccess(products: products)),
     );
   }
-
-
-
 }
