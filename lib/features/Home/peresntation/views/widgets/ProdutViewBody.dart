@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../constsns.dart';
 import '../../../../../core/Widghts/CustomAppbar2.dart';
@@ -32,7 +33,7 @@ class _ProdutViewBodyState extends State<ProdutViewBody> {
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding:  EdgeInsets.symmetric(horizontal: kHorsintalPadding.w),
           child: CustomScrollView(
             slivers: [
               SliverToBoxAdapter(

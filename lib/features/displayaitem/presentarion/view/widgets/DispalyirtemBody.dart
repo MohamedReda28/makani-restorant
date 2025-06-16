@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:makani/core/Widghts/Custom_Botton.dart';
 import 'package:makani/core/entitys/ProductEntity.dart';
-import 'package:makani/core/services/services/CustomBlocObserver.dart';
 import 'package:makani/core/uitels/App_TextStyle.dart';
 import 'package:makani/core/uitels/app_images.dart';
-import 'package:makani/features/Home/peresntation/cubits/cart/cart_cubit_cubit.dart';
+import 'package:makani/features/rate/presntation/viwes/rateView.dart';
 import '../../../../../constsns.dart';
 import '../../../../../core/Widghts/CustomFrutDisplay/RichTextforSubtitle.dart';
 import '../../../../../core/Widghts/custom Url image.dart';
@@ -68,6 +66,20 @@ class DisplayItemBody extends StatelessWidget {
               ),
               RichTextforSubtitle(
                 productEntity: productEntity,
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Rateview.routeName);
+                },
+                child: Text(
+                  'المراجعه',
+                  style: AppStyle.bold13.copyWith(
+                    color: const Color(0xFF1B5E37),
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 24,

@@ -1,13 +1,10 @@
-
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import '../../../../../constsns.dart';
 import '../../../../../core/Widghts/Custom_Botton.dart';
 import '../../../../../core/helpes_function/BuildSnakBar.dart';
-import '../../../../Payment/presentation/view/paymentView.dart';
 import '../../../domines/entitys/Order_Entity.dart';
 import '../../../domines/entitys/paypal_payment_entity/paypal_payment_entity.dart';
 import '../../maneger/addProductCubit/order_cubit.dart';
@@ -57,28 +54,26 @@ class _Checkout_View_BodyState extends State<Checkout_View_Body> {
             height: 20,
           ),
           CustombottonnavigationTapbar(
-            pageController: pageController,
-            currentPageActive: currentPageActive,
-            ontap: (index) {
-              var orderentity = context.read<OrderInputEntity>();
-              if(index==0){
-                pageController.animateToPage(index,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeIn);
-              }
-              else if (index==1){
-                if(orderentity.paywithCash!=null){
+              pageController: pageController,
+              currentPageActive: currentPageActive,
+              ontap: (index) {
+                var orderentity = context.read<OrderInputEntity>();
+                if (index == 0) {
                   pageController.animateToPage(index,
                       duration: const Duration(milliseconds: 300),
                       curve: Curves.easeIn);
-                }else {
-                  BuildSnakBar(context, 'اختار طريقه الدفع');
+                } else if (index == 1) {
+                  if (orderentity.paywithCash != null) {
+                    pageController.animateToPage(index,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeIn);
+                  } else {
+                    BuildSnakBar(context, 'اختار طريقه الدفع');
+                  }
+                } else {
+                  addressSection_Validation();
                 }
-             }else{
-                addressSection_Validation();
-              }
-            }
-          ),
+              }),
           Expanded(
             child: Checkout_Steps_Listview(
               pageController: pageController,
@@ -94,10 +89,9 @@ class _Checkout_View_BodyState extends State<Checkout_View_Body> {
                 } else if (currentPageActive == 1) {
                   addressSection_Validation();
                 } else {
-                  // var orderEntity = context.read<OrderInputEntity>();
-                  // context.read<AddOrderCubit>().addOrder(orderEntity);
+                  var orderEntity = context.read<OrderInputEntity>();
+                  context.read<AddOrderCubit>().addOrder(orderEntity);
                   //processpayment(context);
-                  Navigator.pushNamed(context, Paymentview.routeName);
                 }
               }),
           const SizedBox(height: 32),
@@ -127,15 +121,16 @@ class _Checkout_View_BodyState extends State<Checkout_View_Body> {
 
   void processpayment(BuildContext context) {
     var orderEntity = context.read<OrderInputEntity>();
-    PaypalPaymentEntity paypalPaymentEntity =  PaypalPaymentEntity.fromEntity(orderEntity);
-    var ordercubit=context.read<AddOrderCubit>();
-    log (paypalPaymentEntity.toJson().toString());
+    PaypalPaymentEntity paypalPaymentEntity =
+        PaypalPaymentEntity.fromEntity(orderEntity);
+    var ordercubit = context.read<AddOrderCubit>();
+    log(paypalPaymentEntity.toJson().toString());
     Navigator.of(context).push(MaterialPageRoute(
       builder: (BuildContext context) => PaypalCheckoutView(
         sandboxMode: true,
         clientId: "",
         secretKey: "",
-        transactions:  [
+        transactions: [
           paypalPaymentEntity.toJson(),
         ],
         note: "Contact us for any questions on your order.",
@@ -143,14 +138,11 @@ class _Checkout_View_BodyState extends State<Checkout_View_Body> {
           print("onSuccess: $params");
           Navigator.pop(context);
           ordercubit.addOrder(orderEntity);
-
         },
         onError: (error) {
-        
           Navigator.pop(context);
           log(error.toString());
           BuildSnakBar(context, 'حدث خطأ في عمليه الدفع');
-
         },
         onCancel: () {
           print('cancelled:');
