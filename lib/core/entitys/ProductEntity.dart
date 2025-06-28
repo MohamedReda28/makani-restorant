@@ -1,8 +1,9 @@
-
 import 'package:equatable/equatable.dart';
+import 'package:makani/core/entitys/reviewPorductEntity.dart';
 
 class ProductEntity extends Equatable {
   final String name;
+  final String pID;
   final String description;
   final String code;
   final num price;
@@ -12,16 +13,18 @@ class ProductEntity extends Equatable {
   final String catogry;
   final num numberOfCaloric;
   final String unitAmount;
-  // final num avgReting;
-  final num ratigCount = 0;
+  final double avgReting;
+  final int ratigCount;
   final bool isOrgnic;
-  //final List<ReviewporductEntity> reviews;
+  final List<ReviewporductEntity> reviews;
 
   ProductEntity(
       {required this.name,
+        required this.pID,
+      required this.ratigCount,
       required this.catogry,
-      //  required this.avgReting,
-      // required this.reviews,
+      required this.avgReting,
+      required this.reviews,
       required this.numberOfCaloric,
       required this.unitAmount,
       required this.description,

@@ -4,5 +4,6 @@ class BackEndImpoint {
   static const getproducts = 'products';
   static const addOrders = 'orders';
   static const getOrders = 'orders';
+  static const addreview = 'reviews';
   static const isUserExist = 'users';
 }

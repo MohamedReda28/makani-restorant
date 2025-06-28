@@ -39,7 +39,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case Myorderview.routeName:
       return MaterialPageRoute(builder: (context) => const Myorderview());
     case Rateview.routeName:
-      return MaterialPageRoute(builder: (context) => const Rateview());
+      return MaterialPageRoute(builder: (context) =>  Rateview(productEntity: settings.arguments as ProductEntity,
+      ));
     case WhoOur.routeName:
       return MaterialPageRoute(builder: (context) => const WhoOur());
     case DisplayItem.routeName:

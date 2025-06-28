@@ -69,11 +69,13 @@
   <img src="screenshots/address.png" width="30%" />
 </div>
 
-### 🚚 الشحن والدفع
+### 🚚⭐ تقييم الطلب الشحن والدفع
 
 <div align="center">
   <img src="screenshots/sheping.png" width="30%" />
   <img src="screenshots/check.png" width="30%" />
+  <img src="screenshots/rate.png" width="30%" />
+
 </div>
 
 

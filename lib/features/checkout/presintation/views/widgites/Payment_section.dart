@@ -9,11 +9,11 @@ class PaymentSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 24,
         ),
-        Ordersammrywidgit(),
-        SizedBox(
+        const Ordersammrywidgit(),
+        const SizedBox(
           height: 24,
         ),
         Delevarywidgit(

@@ -14,9 +14,10 @@ ProductEntity getDummyProduct() {
     catogry: 'berger',
     numberOfCaloric: 95,
     unitAmount: '1/4',
-    //reviews: [],
+    reviews: [],
     isOrgnic: true,
-    imageUrl: " ",
+    imageUrl: " ", avgReting: 0.0,
+    ratigCount: 12, pID: '904jsmisncjdfd',
   );
 }
 

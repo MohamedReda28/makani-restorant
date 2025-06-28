@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ReviewItemWidget extends StatelessWidget {
-  final String name;
-  final String date;
-  final String avatarUrl;
-  final double rating;
-  final String comment;
+import '../../../../../core/entitys/reviewPorductEntity.dart';
 
+class ReviewItemWidget extends StatelessWidget {
+
+final ReviewporductEntity reviewporductEntity;
   const ReviewItemWidget({
     super.key,
-    required this.name,
-    required this.date,
-    required this.avatarUrl,
-    required this.rating,
-    required this.comment,
+    required this.reviewporductEntity
   });
 
   @override
@@ -30,7 +24,7 @@ class ReviewItemWidget extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 children: [
                   CircleAvatar(
-                    backgroundImage: NetworkImage(avatarUrl),
+                    backgroundImage: NetworkImage(reviewporductEntity.image),
                     radius: 28,
                   ),
                   Positioned(
@@ -44,7 +38,7 @@ class ReviewItemWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
-                        rating.toStringAsFixed(1),
+                        '${reviewporductEntity.ratting}',
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 10,
@@ -61,19 +55,19 @@ class ReviewItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      name,
+                      reviewporductEntity.name,
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      date,
+                      reviewporductEntity.data,
                       style:
                       const TextStyle(color: Colors.grey, fontSize: 12),
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      comment,
+                      reviewporductEntity.revdescription,
                       style: const TextStyle(
                         fontSize: 14,
                         height: 1.5,

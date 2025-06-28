@@ -1,17 +1,19 @@
+import 'package:intl/intl.dart';
+
 import '../entitys/reviewPorductEntity.dart';
 
 class ReviewporductModel {
   final String name;
   final String revdescription;
   final String image;
-  final String data;
-  final num ratting;
+  final String date;
+  final double ratting;
 
   ReviewporductModel({
     required this.name,
     required this.revdescription,
     required this.image,
-    required this.data,
+    required this.date,
     required this.ratting,
   });
 
@@ -21,8 +23,8 @@ class ReviewporductModel {
       name: reviewporductEntity.name,
       revdescription: reviewporductEntity.revdescription,
       image: reviewporductEntity.image,
-      data: reviewporductEntity.data,
       ratting: reviewporductEntity.ratting,
+      date: DateFormat('yyyy-MM-dd HH:mm', 'en').format(DateTime.now()),
     );
   }
   factory ReviewporductModel.fromJson(Map<String, dynamic> json) {
@@ -30,7 +32,7 @@ class ReviewporductModel {
       name: json['name'],
       revdescription: json['revdescription'],
       image: json['image'],
-      data: json['data'],
+      date: json['date'],
       ratting: json['ratting'],
     );
   }
@@ -39,8 +41,8 @@ class ReviewporductModel {
       name: name,
       revdescription: revdescription,
       image: image,
-      data: data,
       ratting: ratting,
+      data: date,
     );
   }
 
@@ -49,7 +51,7 @@ class ReviewporductModel {
       'name': name,
       'revdescription': revdescription,
       'image': image,
-      'data': data,
+      'date':  date,
       'ratting': ratting,
     };
   }

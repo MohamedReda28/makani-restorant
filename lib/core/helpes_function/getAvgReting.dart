@@ -1,5 +1,5 @@
 
-num getAvgReting(List<dynamic> reviews) {
+double getAvgReting(List<dynamic> reviews) {
   var sum = 0.0;
   for (var review in reviews) {
     sum += review.ratting;

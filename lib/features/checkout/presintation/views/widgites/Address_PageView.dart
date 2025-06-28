@@ -30,27 +30,7 @@ class AddressPageview extends StatelessWidget {
                   hinttext: 'الاسم كامل',
                   textInputType: TextInputType.name,
                   onSaved: (value) {
-                    context.read<OrderInputEntity>().addressOrderentity!.name =
-                        value;
-                  }),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomTextFormField(
-                  hinttext: 'البريد الإلكتروني',
-                  textInputType: TextInputType.name,
-                  onSaved: (value) {
-                    context.read<OrderInputEntity>().addressOrderentity!.email =
-                        value;
-                  }),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomTextFormField(
-                  hinttext: 'العنوان',
-                  textInputType: TextInputType.name,
-                  onSaved: (value) {
-                    context.read<OrderInputEntity>().addressOrderentity!.address =
+                    context.read<OrderInputEntity>().addressOrderentity.name =
                         value;
                   }),
               const SizedBox(
@@ -60,24 +40,23 @@ class AddressPageview extends StatelessWidget {
                   hinttext: 'المدينه',
                   textInputType: TextInputType.name,
                   onSaved: (value) {
-                    context.read<OrderInputEntity>().addressOrderentity!.city =
+                    context.read<OrderInputEntity>().addressOrderentity.city =
                         value;
                   }),
               const SizedBox(
                 height: 8,
               ),
               CustomTextFormField(
-                  hinttext: 'رقم الطابق , رقم الشقه ..',
+                  hinttext: 'الحي',
                   textInputType: TextInputType.name,
                   onSaved: (value) {
-                    context
-                        .read<OrderInputEntity>()
-                        .addressOrderentity!
-                        .addressDetels = value;
+                    context.read<OrderInputEntity>().addressOrderentity.address =
+                        value;
                   }),
               const SizedBox(
                 height: 8,
               ),
+
               CustomTextFormField(
                   hinttext: 'رقم الهاتف',
                   textInputType: TextInputType.number,
@@ -88,11 +67,11 @@ class AddressPageview extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-              CustomSwitchButton(
-                label: "حفظ العنوان",
-                initialValue: false,
-                onChanged: (value) {},
-              ),
+              // CustomSwitchButton(
+              //   label: "حفظ العنوان",
+              //   initialValue: false,
+              //   onChanged: (value) {},
+              // ),
             ],
           ),
         ),

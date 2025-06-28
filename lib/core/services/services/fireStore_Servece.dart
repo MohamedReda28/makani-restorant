@@ -125,4 +125,21 @@ class FirestoerServeces implements DataBaseServeces {
     var data = await firestore.collection(path).doc(documentId).get();
     return data.exists;
   }
+
+  @override
+  Future<void> updateData({
+    required String path,
+    required Map<String, dynamic> data,
+    String? documentId,
+    bool merge = false,
+  }) async {
+    final ref = firestore.collection(path);
+
+    if (documentId != null) {
+      await ref.doc(documentId).set(data, SetOptions(merge: merge));
+    } else {
+      await ref.add(data);
+    }
+  }
+
 }

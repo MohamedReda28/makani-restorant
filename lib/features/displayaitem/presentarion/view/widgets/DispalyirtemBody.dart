@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:makani/core/Widghts/Custom_Botton.dart';
 import 'package:makani/core/entitys/ProductEntity.dart';
+import 'package:makani/core/uitels/App_Color.dart';
 import 'package:makani/core/uitels/App_TextStyle.dart';
 import 'package:makani/core/uitels/app_images.dart';
 import 'package:makani/features/rate/presntation/viwes/rateView.dart';
@@ -70,16 +72,33 @@ class DisplayItemBody extends StatelessWidget {
               const SizedBox(
                 height: 12,
               ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, Rateview.routeName);
-                },
-                child: Text(
-                  'المراجعه',
-                  style: AppStyle.bold13.copyWith(
-                    color: const Color(0xFF1B5E37),
+              Row(
+                children: [
+                  SvgPicture.asset(Assets.imagesStarIcon),
+                  Text(
+                    "${productEntity.avgReting}",
+                    style: AppStyle.semibold13),
+                  SizedBox(width: 6.w,),
+                  Text(
+                    "(${productEntity.ratigCount})",
+                    style: AppStyle.regular13
+                        .copyWith(color: const Color(0xFF969899)),
                   ),
-                ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, Rateview.routeName,
+                          arguments: productEntity);
+                    },
+                    child: Text(
+                      'المراجعه',
+                      style: AppStyle.bold13.copyWith(
+                        color: AppColor.kPrimaryColor,
+                        decoration:
+                            TextDecoration.underline, // ✅ يضيف الخط تحت النص
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 24,
@@ -100,9 +119,9 @@ class DisplayItemBody extends StatelessWidget {
                   ),
                 ],
               ),
-              Center(
-                child: CustomBotton(title: 'اضف الي السله', ontap: () {}),
-              ),
+              // Center(
+              //   child: CustomBotton(title: 'اضف الي السله', ontap: () {}),
+              // ),
             ],
           ),
         ),

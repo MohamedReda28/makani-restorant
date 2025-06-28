@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:makani/core/helpes_function/getUser.dart';
 import 'package:makani/features/Splash/Presentation/Veiws/widgets/splashViewBody.dart';
 import '../../../../constsns.dart';
 import '../../../../core/services/services/firebase_Auth_Servece.dart';
@@ -35,7 +36,8 @@ class _SplashVeiwState extends State<SplashVeiw> {
       const Duration(seconds: 3),
       () {
         if (isBordingViewSee) {
-          var isloggedIn = FirebaseAuthServece().isLoggedIn();
+          //var isloggedIn = FirebaseAuthServece().isLoggedIn();
+          var isloggedIn = getUser()!=null;
 
           if (isloggedIn) {
             Navigator.pushReplacementNamed(context, MainView.routeName);

@@ -21,5 +21,4 @@ abstract class AuthRepo {
   Future<Either<Failur, UserEntity>> signInWithFacebook();
 
   Future<Either<Failur, void>> sendPasswordResetEmail({required String email});
-
 }

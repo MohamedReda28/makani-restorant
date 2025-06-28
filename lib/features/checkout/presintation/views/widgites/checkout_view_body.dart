@@ -82,7 +82,7 @@ class _Checkout_View_BodyState extends State<Checkout_View_Body> {
             ),
           ),
           CustomBotton(
-              title: currentPageActive != 2 ? 'التالي' : "الدفع عبر  paypal",
+              title: currentPageActive != 2 ? 'التالي' : "طلب",
               ontap: () {
                 if (currentPageActive == 0) {
                   shippingSection_Validation(context);
