@@ -70,7 +70,7 @@ class _RateViewBodyState extends State<RateViewBody> {
                       onpreessed(context);
                     },
                     child: const Text(
-                      'تقييم',
+                      'اضافه تقييم',
                       style: TextStyle(
                         color:AppColor.kPrimaryColor, // أو اللون اللي تحبه
                       ),
