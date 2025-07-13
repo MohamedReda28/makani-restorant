@@ -30,14 +30,14 @@ class CustomFrutDisplay extends StatelessWidget {
           ),
           child: Stack(
             children: [
-              Positioned(
-                top: -3,
-                right: -3,
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.favorite_border_outlined),
-                ),
-              ),
+              // Positioned(
+              //   top: -3,
+              //   right: -3,
+              //   child: IconButton(
+              //     onPressed: () {},
+              //     icon: const Icon(Icons.favorite_border_outlined),
+              //   ),
+              // ),
               Column(
                 children: [
                   const SizedBox(height: 8),

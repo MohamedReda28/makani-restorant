@@ -4,4 +4,6 @@ import '../../erroes/Failur.dart';
 
 abstract class OrderRepo {
   Future<Either<Failur, void>> addOrder(OrderInputEntity orderEntity);
+  Future<void> incrementSellingCount(String productId);
+  Future<int> getNextOrderNumber();
 }

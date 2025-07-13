@@ -84,4 +84,3 @@
 لتحميل نسخة APK الخاصة بالتطبيق:  
 📥 [Download APK - v1.0.0](https://drive.google.com/file/d/1kL7mltgGhJp-LtMYjyFAWJ_KRCpsDbMh/view?usp=drive_link)
 
-له

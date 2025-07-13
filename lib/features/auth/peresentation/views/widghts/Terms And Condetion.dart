@@ -26,7 +26,7 @@ class _TermsAndCondetionState extends State<TermsAndCondetion> {
             setState(() {});
           },
         ),
-        SizedBox(
+        const SizedBox(
           width: 16,
         ),
         Expanded(
@@ -36,7 +36,7 @@ class _TermsAndCondetionState extends State<TermsAndCondetion> {
                 TextSpan(
                     text: 'من خلال إنشاء حساب ، فإنك توافق على ',
                     style: AppStyle.semibold13.copyWith(
-                      color: Color(0xFF949D9E),
+                      color: const Color(0xFF949D9E),
                     )),
                 TextSpan(
                     text: 'الشروط والأحكام',
@@ -45,7 +45,7 @@ class _TermsAndCondetionState extends State<TermsAndCondetion> {
                 TextSpan(
                     text: ' ',
                     style: AppStyle.semibold13.copyWith(
-                      color: Color(0xFF949D9E),
+                      color: const Color(0xFF949D9E),
                     )),
                 TextSpan(
                     text: 'الخاصة',
@@ -54,7 +54,7 @@ class _TermsAndCondetionState extends State<TermsAndCondetion> {
                 TextSpan(
                     text: ' ',
                     style: AppStyle.semibold13.copyWith(
-                      color: Color(0xFF949D9E),
+                      color: const Color(0xFF949D9E),
                     )),
                 TextSpan(
                     text: 'بنا',

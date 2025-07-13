@@ -16,7 +16,7 @@ class _CustomPasswordFeildState extends State<CustomPasswordFeild> {
   Widget build(BuildContext context) {
     return CustomTextFormField(
       onSaved: widget.onSaved,
-      hinttext: 'كلمة المرور',
+      labletext:"كلمه المرور",
       textInputType: TextInputType.visiblePassword,
       obscureText: obscureText,
       suff: GestureDetector(
@@ -25,7 +25,7 @@ class _CustomPasswordFeildState extends State<CustomPasswordFeild> {
           setState(() {});
         },
         child:
-            obscureText ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
+            obscureText ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility),
       ),
     );
   }

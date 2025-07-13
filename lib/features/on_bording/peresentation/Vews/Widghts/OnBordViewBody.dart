@@ -73,8 +73,8 @@ class _OnBordViewBodyState extends State<OnBordViewBody> {
             ),
           ),
         ),
-        const SizedBox(
-          height: 43,
+         SizedBox(
+          height: 43.h,
         ),
       ],
     );

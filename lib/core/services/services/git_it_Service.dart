@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 
 import 'package:makani/core/repos/logout_repo/Logout_repo_implem.dart';
 import 'package:makani/core/repos/logout_repo/logout_repo.dart';
+import 'package:makani/features/Home/data/repo/repo_Imple.dart';
+import 'package:makani/features/Home/domines/repo/PostRepo.dart';
 import '../../../features/Home/peresntation/cubits/myorders/domins/repo/orderRebo.dart';
 import '../../../features/auth/data/repos/repoImplemantation.dart';
 import '../../../features/auth/domain/repos/Auth Repo.dart';
@@ -38,6 +40,11 @@ void setupGitit() {
 
   getIt.registerSingleton<ProductRepo>(
     productRepoImpl(
+      dataBaseServeces: getIt<DataBaseServeces>(),
+    ),
+  );
+  getIt.registerSingleton<PostRepo>(
+    PostRepoImple(
       dataBaseServeces: getIt<DataBaseServeces>(),
     ),
   );

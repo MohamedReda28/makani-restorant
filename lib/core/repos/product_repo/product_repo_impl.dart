@@ -18,8 +18,8 @@ class productRepoImpl implements ProductRepo {
       getSomeBestSellingProduct() async {
     try {
       var data = await dataBaseServeces
-          .getData(path: BackEndImpoint.getproducts, query: {
-        'limit': 2,
+          .getData(path: BackEndImpoint.productspath, query: {
+        'limit': 5,
         'orderBy': 'sellingcount',
         'descending': true,
       }) as List<Map<String, dynamic>>;
@@ -38,8 +38,8 @@ class productRepoImpl implements ProductRepo {
   Future<Either<Failur, List<ProductEntity>>> getAllBestSellingProduct() async {
     try {
       var data = await dataBaseServeces
-          .getData(path: BackEndImpoint.getproducts, query: {
-        'limit': 5,
+          .getData(path: BackEndImpoint.productspath, query: {
+
         'orderBy': 'sellingcount',
         'descending': true,
       }) as List<Map<String, dynamic>>;
@@ -58,7 +58,7 @@ class productRepoImpl implements ProductRepo {
   Future<Either<Failur, List<ProductEntity>>> getProducts() async {
     try {
       var data = await dataBaseServeces.getData(
-          path: BackEndImpoint.getproducts) as List<Map<String, dynamic>>;
+          path: BackEndImpoint.productspath) as List<Map<String, dynamic>>;
 
       List<ProductModel> products =
           data.map((e) => ProductModel.fromJson(e)).toList();
@@ -84,7 +84,7 @@ class productRepoImpl implements ProductRepo {
       };
 
       var data = await dataBaseServeces.getData(
-        path: BackEndImpoint.getproducts,
+        path: BackEndImpoint.productspath,
         query: query,
       ) as List<Map<String, dynamic>>;
 
@@ -104,7 +104,7 @@ class productRepoImpl implements ProductRepo {
       {required String sortOption}) async {
     try {
       var data = await dataBaseServeces
-          .getData(path: BackEndImpoint.getproducts, query: {
+          .getData(path: BackEndImpoint.productspath, query: {
         'sortOption': sortOption,
       }) as List<Map<String, dynamic>>;
       List<ProductModel> products =
@@ -123,7 +123,7 @@ class productRepoImpl implements ProductRepo {
       {required String catogry}) async {
     try {
       var data = await dataBaseServeces
-          .getData(path: BackEndImpoint.getproducts, query: {
+          .getData(path: BackEndImpoint.productspath, query: {
         'categoryField': 'catogry',
         'categoryValue': catogry,
       }) as List<Map<String, dynamic>>;

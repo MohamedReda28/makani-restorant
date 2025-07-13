@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../uitels/App_Color.dart';
 import '../uitels/App_TextStyle.dart';
@@ -12,9 +13,9 @@ class CustomBotton extends StatelessWidget {
     return GestureDetector(
       onTap: ontap,
       child: Container(
-        width: 343,
-        height: 54,
-        padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 15),
+        width: 343.w,
+        height: 54.h,
+        padding:  EdgeInsets.symmetric(horizontal: 48.w, vertical: 15.h),
         decoration: ShapeDecoration(
           color: AppColor.kPrimaryColor,
           shape: RoundedRectangleBorder(

@@ -8,9 +8,12 @@ AppBar buildAppBar(context, {required String title}) {
   return AppBar(
     backgroundColor: Colors.white,
     centerTitle: true,
-    title: Text(
-      title,
-      style: AppStyle.bold19,
+    title: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        title,
+        style: AppStyle.semibold16,
+      ),
     ),
     leading: GestureDetector(
       onTap: () {

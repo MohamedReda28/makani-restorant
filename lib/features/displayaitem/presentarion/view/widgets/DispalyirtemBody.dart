@@ -10,7 +10,6 @@ import 'package:makani/features/rate/presntation/viwes/rateView.dart';
 import '../../../../../constsns.dart';
 import '../../../../../core/Widghts/CustomFrutDisplay/RichTextforSubtitle.dart';
 import '../../../../../core/Widghts/custom Url image.dart';
-import 'CustomShapeForDisplayDetails.dart';
 
 class DisplayItemBody extends StatelessWidget {
   const DisplayItemBody({
@@ -74,7 +73,7 @@ class DisplayItemBody extends StatelessWidget {
               ),
               Row(
                 children: [
-                  SvgPicture.asset(Assets.imagesStarIcon),
+                  SvgPicture.asset(Assets.imagesStar),
                   Text(
                     "${productEntity.avgReting}",
                     style: AppStyle.semibold13),
@@ -111,14 +110,7 @@ class DisplayItemBody extends StatelessWidget {
               const SizedBox(
                 height: 24,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Customshapefordisplaydetails(
-                    productEntity: productEntity,
-                  ),
-                ],
-              ),
+
               // Center(
               //   child: CustomBotton(title: 'اضف الي السله', ontap: () {}),
               // ),

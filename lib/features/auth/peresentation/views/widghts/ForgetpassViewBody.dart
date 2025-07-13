@@ -7,18 +7,18 @@ import '../../../../../core/uitels/App_TextStyle.dart';
 import '../../cubits/Forgetpass_Cubit/forgetpass_cubit.dart';
 
 class ForgetpassViewBody extends StatefulWidget {
-   ForgetpassViewBody({super.key});
+  ForgetpassViewBody({super.key});
 
   @override
   State<ForgetpassViewBody> createState() => _ForgetpassViewBodyState();
 }
 
 class _ForgetpassViewBodyState extends State<ForgetpassViewBody> {
-   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
+  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
 
- late String email;
+  late String email;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class _ForgetpassViewBodyState extends State<ForgetpassViewBody> {
               height: 24,
             ),
             Text(
-              'لا تقلق ، ما عليك سوى كتابة البريد الالكتروني وسنرسل رساله التحقق .',
+              "لا تقلق ، ما عليك سوى كتابة البريد الإلكتروني وسنرسل رسالة التحقق.",
               textAlign: TextAlign.right,
               style: AppStyle.semibold16.copyWith(
                 color: const Color(0xFF616A6B),
@@ -45,22 +45,27 @@ class _ForgetpassViewBodyState extends State<ForgetpassViewBody> {
               onSaved: (value) {
                 email = value!;
               },
-              hinttext: 'البريد الإلكتروني',
+              labletext: "الايميل",
               textInputType: TextInputType.emailAddress,
             ),
             const SizedBox(
               height: 24,
             ),
-            CustomBotton(title: 'نسيت كلمة المرور', ontap: () {
-              if (formKey.currentState!.validate()) {
-                formKey.currentState!.save();
-                context.read<ForgetpassCubit>().sendPasswordResetEmail(email: email);
-              } else {
-                setState(() {
-                  autoValidateMode = AutovalidateMode.always;
-                });
-              }
-            },)
+            CustomBotton(
+              title: "نسيت كلمه المرور",
+              ontap: () {
+                if (formKey.currentState!.validate()) {
+                  formKey.currentState!.save();
+                  context
+                      .read<ForgetpassCubit>()
+                      .sendPasswordResetEmail(email: email);
+                } else {
+                  setState(() {
+                    autoValidateMode = AutovalidateMode.always;
+                  });
+                }
+              },
+            )
           ],
         ),
       ),

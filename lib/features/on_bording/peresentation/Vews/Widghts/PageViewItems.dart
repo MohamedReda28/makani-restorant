@@ -40,10 +40,10 @@ class PageViewItem extends StatelessWidget {
                 color: const Color(0xFFEF2A39),
               ),
               Positioned(
-                bottom: 0,
-                right: 0,
-                left: 0,
-                top: 30,
+                bottom: 20.h,
+                right: 10.w,
+                left: 10.w,
+                top: 30.h,
                 child: Image.asset(image),
               ),
 
@@ -55,7 +55,7 @@ class PageViewItem extends StatelessWidget {
                     // Navigator.of(context).pushReplacementNamed(SiginView.routeName);
                   },
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 40,right: 20),
+                    padding:  EdgeInsets.only(top: 40.h, right: 20.w),
                     child: Text(
                       'تخطي',
                       style: AppStyle.regular13,

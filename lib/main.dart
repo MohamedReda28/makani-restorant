@@ -44,7 +44,7 @@ class Makani extends StatelessWidget {
                 fontFamily: 'Cairo',
                 scaffoldBackgroundColor: Colors.white,
                 colorScheme:
-                    ColorScheme.fromSeed(seedColor: AppColor.kPrimaryColor)),
+                ColorScheme.fromSeed(seedColor: AppColor.kPrimaryColor)),
             localizationsDelegates: const [
               S.delegate,
               GlobalMaterialLocalizations.delegate,

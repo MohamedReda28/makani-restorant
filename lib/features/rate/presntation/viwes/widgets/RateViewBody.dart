@@ -61,7 +61,7 @@ class _RateViewBodyState extends State<RateViewBody> {
                   ),
                   TextFileForComment(
                     hinttext: "اخل تقييم من  1:5",
-                    textInputType: TextInputType.text,
+                    textInputType: TextInputType.number,
                     onSaved: (value) {
                       rate = double.tryParse(value!)!;                    },
                   ),
@@ -128,7 +128,7 @@ class _RateViewBodyState extends State<RateViewBody> {
       context.read<ReviewCubit>().addReview(
         review,
         widget.productEntity.pID,
-        path: BackEndImpoint.getproducts,
+        path: BackEndImpoint.productspath,
       );
     } else {
       setState(() {

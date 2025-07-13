@@ -5,6 +5,7 @@ import '../../../../../core/Widghts/Custom Password Feild.dart';
 import '../../../../../core/Widghts/CustomTextField.dart';
 import '../../../../../core/Widghts/Custom_Botton.dart';
 import '../../../../../core/helpes_function/BuildSnakBar.dart';
+import '../../../../../core/uitels/app_images.dart';
 import '../../cubits/SignUp_Cubite/signup_cubit_cubit.dart';
 import 'Dont Have Account Widgh.dart';
 import 'Terms And Condetion.dart';
@@ -31,14 +32,14 @@ class _SignupViewBodyState extends State<SignupViewBody> {
           key: formKey,
           child: Column(
             children: [
-              const SizedBox(
-                height: 16,
-              ),
+              SizedBox(
+                  height: 230,
+                  child: Image.asset(Assets.imagesLogo)),
               CustomTextFormField(
                 onSaved: (value) {
                   name = value!;
                 },
-                hinttext: 'الاسم كامل',
+                labletext:  "الاسم بالكامل",
                 textInputType: TextInputType.name,
               ),
               const SizedBox(
@@ -48,7 +49,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 onSaved: (value) {
                   email = value!;
                 },
-                hinttext: ' البريد الإلكتروني',
+                labletext: "الايميل",
                 textInputType: TextInputType.emailAddress,
               ),
               const SizedBox(
@@ -71,7 +72,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 height: 30,
               ),
               CustomBotton(
-                title: 'إنشاء حساب جديد',
+                title: "انشاء حساب جديد",
                 ontap: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
@@ -95,8 +96,8 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               ),
               FittedBox(
                 child: DontHaveAccountWidgh(
-                  textone: 'تمتلك حساب بالفعل؟',
-                  texttwo: 'قم بتسجيل الدخول',
+                  textone:"تمتلك حساب بالفعل؟",
+                  texttwo: "قم بتسجيل الدخول",
                   ontap: () {
                     Navigator.pop(context);
                   },

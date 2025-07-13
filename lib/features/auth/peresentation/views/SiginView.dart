@@ -18,21 +18,21 @@ class SiginView extends StatelessWidget {
     return BlocProvider(
       create: (context) => SigninCubit(getIt<AuthRepo>()),
       child: Scaffold(
-        appBar: buildAppBar(context, title: 'تسجيل دخول'),
+        appBar: buildAppBar(context, title: "تسجيل الدخول"),
         body: Builder(builder: (context) {
           return BlocConsumer<SigninCubit, SigninState>(
             listener: (context, state) {
               if (state is SigninSuccess) {
-                Navigator.pushNamed(context, MainView.routeName);
-                BuildSnakBar(context, 'تم تسجيل الدخول');
+                Navigator.pushNamedAndRemoveUntil(context, MainView.routeName, (Route<dynamic> route) => false);
+                BuildSnakBar(context,"تم تسجيل الدخول بنجاح",type: SnackbarType.success);
               }
               if (state is SigninFailure) {
-                BuildSnakBar(context, state.message);
+                BuildSnakBar(context, state.message,type: SnackbarType.error);
               }
             },
             builder: (context, state) => CustoProgressHUD(
               isLoading: state is SigninLoading ? true : false,
-              child: const SiginVeiwBody(),
+              child:  const SiginVeiwBody(),
             ),
           );
         }),

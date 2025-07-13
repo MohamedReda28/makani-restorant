@@ -17,7 +17,7 @@ class Customcategory extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.only(left: 5),
+        padding: const EdgeInsets.only(left: 8),
         child: Column(
           children: [
             Container(

@@ -12,7 +12,6 @@ ProductEntity getDummyProduct() {
     /// avgReting: 2.2,
     isFeature: true,
     catogry: 'berger',
-    numberOfCaloric: 95,
     unitAmount: '1/4',
     reviews: [],
     isOrgnic: true,

@@ -13,7 +13,7 @@ class CustomCatogry extends StatelessWidget {
           color: Color(0xFFF3F5F7),
           shape: OvalBorder(),
         ),
-        child: Container(
+        child: SizedBox(
           width: 45,
           height: 45,
           child: Image.network(

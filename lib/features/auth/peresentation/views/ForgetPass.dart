@@ -14,7 +14,7 @@ class ForgetpassView extends StatelessWidget {
     return BlocProvider(
       create: (context)=> ForgetpassCubit(getIt<AuthRepo>()),
       child: Scaffold (
-        appBar: buildAppBar(context,title: 'نسيان كلمة المرور'),
+        appBar: buildAppBar(context,title: "نسيان كلمه المرور"),
         body: const ForgetpassViewBodyBuilder(),
       ),
     );

@@ -39,7 +39,7 @@ class TextFileForComment extends StatelessWidget {
         focusedBorder: buildOutlineInputBorder(),
         enabledBorder: buildOutlineInputBorder(),
         hintText: hinttext,
-        helperStyle: AppStyle.bold13.copyWith(color: Color(0xFF949D9E)),
+        helperStyle: AppStyle.bold13.copyWith(color: const Color(0xFF949D9E)),
       ),
     );
   }

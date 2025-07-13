@@ -14,7 +14,7 @@ class OrederRepoImpl implements OrderRepo {
   Future<Either<Failur, void>> addOrder(OrderInputEntity orderEntity) async {
     try {
 
-      final nextOrderNumber = await _getNextOrderNumber();
+      final nextOrderNumber = await getNextOrderNumber();
       final orderNumber = 'ORD-${nextOrderNumber.toString().padLeft(5, '0')}';
       var order = OrderModel.fromOEntity(orderEntity).copyWith(
         orderNumber: orderNumber,
@@ -30,11 +30,13 @@ class OrederRepoImpl implements OrderRepo {
   }
 
   //دي عشان اعمل رقم الطلب
-  Future<int> _getNextOrderNumber() async {
+  Future<int> getNextOrderNumber() async {
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
-
+    //transaction  يبدأ معاملة (Transaction) وهي طريقة مضمونة لتحديث البيانات بأمان حتى لو فيه أكثر
+    // من مستخدم بيعمل نفس العملية في نفس الوقت.
     return await firestore.runTransaction<int>((transaction) async {
       final counterRef = firestore.collection('counters').doc('ordersCounter');
+      //🟠 يقرأ البيانات الحالية داخل المستند داخل نفس الـ transaction.
       final snapshot = await transaction.get(counterRef);
 
       int current = snapshot['lastOrderNumber'] ?? 0;
@@ -42,6 +44,15 @@ class OrederRepoImpl implements OrderRepo {
 
       transaction.update(counterRef, {'lastOrderNumber': next});
       return next;
+    });
+  }
+
+  @override
+  Future<void> incrementSellingCount( String productId) async {
+    final productRef = FirebaseFirestore.instance.collection('products').doc(productId);
+
+    await productRef.update({
+      'sellingcount': FieldValue.increment(1),
     });
   }
 

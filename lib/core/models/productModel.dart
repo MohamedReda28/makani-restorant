@@ -13,7 +13,6 @@ class ProductModel {
   //final File image;
   final bool isFeature;
   String? imageUrl;
-  final num numberOfCaloric;
   final String unitAmount;
    final double avgReting;
   final int ratigCount;
@@ -26,7 +25,6 @@ class ProductModel {
         required this.pID,
        required  this.avgReting,
       required this.ratigCount,
-      required this.numberOfCaloric,
       required this.unitAmount,
       required this.name,
       required this.description,
@@ -50,7 +48,6 @@ class ProductModel {
       //image: File(json['image']),
       isFeature: json['isFeature'],
       catogry: json['catogry'],
-      numberOfCaloric: json['numberOfCaloric'],
       isOrgnic: json['isOrgnic'],
       imageUrl: json['imageUrl'],
       sellingcount: json['sellingcount'],
@@ -74,7 +71,6 @@ class ProductModel {
       isFeature: isFeature,
       avgReting:getAvgReting(reviews),
       catogry: catogry,
-      numberOfCaloric: numberOfCaloric,
       unitAmount: unitAmount,
       isOrgnic: isOrgnic,
       imageUrl: imageUrl,
@@ -92,7 +88,6 @@ class ProductModel {
       'imageUrl': imageUrl,
       'catogry': catogry,
       'ratigCount' : ratigCount,
-      'numberOfCaloric': numberOfCaloric,
       'unitAmount': unitAmount,
       'sellingcount': sellingcount,
       'isOrgnic': isOrgnic,

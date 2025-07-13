@@ -14,6 +14,7 @@ abstract class DataBaseServeces {
       required Map<String, dynamic> data,
       bool merge = false,
       String? documentId});
+
   Future<bool> chackIfDataExist(
       {required String path, required String documentId});
 }

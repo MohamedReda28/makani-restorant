@@ -12,11 +12,11 @@ class CustomTextFiledForSearch extends StatelessWidget {
       onTap:ontap ,
       child: Container(
         height: 45,
-        decoration: const BoxDecoration(boxShadow: [
+        decoration:  BoxDecoration(boxShadow: [
           BoxShadow(
-            color: Color(0x0A000000),
+            color: Colors.black.withOpacity(0.07), // خفيف وناعم
             blurRadius: 9,
-            offset: Offset(0, 2),
+            offset: const Offset(0, 2),
             spreadRadius: 0,
           )
         ]),

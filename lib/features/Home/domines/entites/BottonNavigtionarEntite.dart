@@ -15,7 +15,7 @@ List<BottonNavigtionarEntite> bottomNavigtionarEntites = [
   BottonNavigtionarEntite(
     InActiveImsge: Assets.imagesHome,
     activeImage: Assets.imagesHomeActive,
-    name: 'الرئسيه',
+    name: 'الرئسية',
   ),
   BottonNavigtionarEntite(
     InActiveImsge: Assets.imagesElement3,
@@ -25,7 +25,7 @@ List<BottonNavigtionarEntite> bottomNavigtionarEntites = [
   BottonNavigtionarEntite(
     InActiveImsge: Assets.imagesShoppingCart,
     activeImage: Assets.imagesShoppingCartActive,
-    name: 'السله',
+    name: 'السلة',
   ),
   BottonNavigtionarEntite(
     InActiveImsge: Assets.imagesUser,

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../constsns.dart';
 import '../../../../../core/Widghts/Custom Password Feild.dart';
 import '../../../../../core/Widghts/CustomTextField.dart';
@@ -40,49 +39,46 @@ class _SiginVeiwBodyState extends State<SiginVeiwBody> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 24.h,
-              ),
+              SizedBox(height: 230, child: Image.asset(Assets.imagesLogo)),
               CustomTextFormField(
                 onSaved: (value) {
                   email = value!;
                 },
-                hinttext: 'البريد الإلكتروني',
+                labletext: "الايميل",
                 textInputType: TextInputType.emailAddress,
               ),
-              SizedBox(
-                height: 16.h,
+              const SizedBox(
+                height: 16,
               ),
               CustomPasswordFeild(
                 onSaved: (value) {
                   password = value!;
                 },
               ),
-              SizedBox(
-                height: 10.h,
+              const SizedBox(
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacementNamed(
-                          context, ForgetpassView.routeName);
+                      Navigator.pushNamed(context, ForgetpassView.routeName);
                     },
                     child: Text(
-                      'نسيت كلمة المرور؟',
+                      "هل نسيت كلمه المرور؟",
                       style: AppStyle.semibold13
                           .copyWith(color: AppColor.lightPrimaryColor),
                     ),
                   ),
                 ],
               ),
-              SizedBox(
-                height: 33.h,
+              const SizedBox(
+                height: 33,
               ),
               Center(
                 child: CustomBotton(
-                  title: 'تسجيل دخول',
+                  title: "تسجيل الدخول",
                   ontap: () {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
@@ -97,32 +93,32 @@ class _SiginVeiwBodyState extends State<SiginVeiwBody> {
                   },
                 ),
               ),
-              SizedBox(
-                height: 33.h,
+              const SizedBox(
+                height: 33,
               ),
               DontHaveAccountWidgh(
-                textone: 'لا تمتلك حساب؟',
-                texttwo: 'قم نانشاء حساب',
+                textone: "لا تمتلك حساب",
+                texttwo: "قم بانشاء حساب جديد",
                 ontap: () {
                   Navigator.pushNamed(context, SignUpView.routeName);
                 },
               ),
-              SizedBox(
-                height: 33.h,
+              const SizedBox(
+                height: 33,
               ),
               const CustomDriverAndOr(),
-              SizedBox(
-                height: 16.h,
+              const SizedBox(
+                height: 16,
               ),
               CustomLoginBy(
                 ontap: () {
                   context.read<SigninCubit>().signInWithGoogle();
                 },
-                title: 'تسجيل بواسطة جوجل',
+                title: "تسجيل الدخول بواسطه جوجل",
                 image: Assets.imagesGoogleIcons,
               ),
-              SizedBox(
-                height: 16.h,
+              const SizedBox(
+                height: 16,
               ),
               // CustomLoginBy(
               //   ontap: () {},
@@ -139,9 +135,10 @@ class _SiginVeiwBodyState extends State<SiginVeiwBody> {
               //   title: 'تسجيل بواسطة فيسبوك',
               //   image: Assets.imagesFaceBookIcons,
               // ),
-              SizedBox(
-                height: 16.h,
+              const SizedBox(
+                height: 16,
               ),
+
             ],
           ),
         ),

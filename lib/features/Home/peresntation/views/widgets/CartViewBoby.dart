@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:makani/features/Home/peresntation/views/HomeView.dart';
+import 'package:makani/features/Home/peresntation/views/mainView.dart';
 import '../../../../../constsns.dart';
 import '../../../../../core/Widghts/CustomAppbar2.dart';
 import '../../cubits/cart/cart_cubit_cubit.dart';
@@ -15,21 +17,25 @@ class Cartviewboby extends StatelessWidget {
     return Stack(children: [
       CustomScrollView(
         slivers: [
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: kTopPadding,
                 ),
                 CustomAppbar2(
                   title: 'السلة',
                   visableicon: false,
+                  onTap: (){
+                    Navigator.pushReplacementNamed(context, MainView.routeName);
+                  },
+
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
-                Massegeincard(),
-                SizedBox(
+                const Massegeincard(),
+                const SizedBox(
                   height: 16,
                 ),
               ],

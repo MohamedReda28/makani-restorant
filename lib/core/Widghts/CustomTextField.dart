@@ -5,14 +5,14 @@ import '../uitels/App_TextStyle.dart';
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
-    required this.hinttext,
+    required this.labletext,
     required this.textInputType,
     this.onSaved,
     this.obscureText = false,
     this.suff,
   });
 
-  final String hinttext;
+  final String labletext;
   final bool obscureText;
   final TextInputType textInputType;
   final void Function(String?)? onSaved;
@@ -31,14 +31,15 @@ class CustomTextFormField extends StatelessWidget {
       },
       keyboardType: textInputType,
       decoration: InputDecoration(
+        labelText:labletext,
         suffixIcon: suff,
         filled: true,
         fillColor: const Color(0xFFF9FAFA),
         border: buildOutlineInputBorder(),
         focusedBorder: buildOutlineInputBorder(),
         enabledBorder: buildOutlineInputBorder(),
-        hintText: hinttext,
-        helperStyle: AppStyle.bold13.copyWith(color: Color(0xFF949D9E)),
+        //hintText: hinttext,
+        helperStyle: AppStyle.bold13.copyWith(color: const Color(0xFF949D9E)),
       ),
     );
   }

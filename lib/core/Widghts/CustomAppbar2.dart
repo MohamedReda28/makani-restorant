@@ -10,9 +10,10 @@ class CustomAppbar2 extends StatelessWidget {
       {super.key,
       required this.title,
       this.visableArw = true,
-      this.visableicon = true});
+      this.visableicon = true, this.onTap});
   final String title;
   final bool visableArw, visableicon;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class CustomAppbar2 extends StatelessWidget {
         Visibility(
           visible: visableArw,
           child: GestureDetector(
-            onTap: () {
+            onTap: onTap ?? () {
               if (Navigator.canPop(context)) {
                 Navigator.pop(context);
               } else {

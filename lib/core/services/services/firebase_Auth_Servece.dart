@@ -5,22 +5,28 @@ import 'package:google_sign_in/google_sign_in.dart';
 import '../../erroes/excaptins.dart';
 
 
+
+
 class FirebaseAuthServece {
   Future<User> CreateUserWithEmailAndPassword(
       {required String email, required String password}) async {
     try {
       final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+      await credential.user!.sendEmailVerification();
       return credential.user!;
     } on FirebaseAuthException catch (e) {
       log('Excaption  in CreateUserWithEmailAndPassword. ${e.toString()}');
       if (e.code == 'weak-password') {
         throw CustomException(message: 'كلمه المرور ضعيفه');
-      } else if (e.code == 'network-request-failed') {
-        throw CustomException(message: 'قم بالاتصال بالانترنت');
+      } else if (e.code == 'invalid-email') {
+        throw CustomException(
+            message: 'لبريد الإلكتروني غير صالح.');
+      }else if (e.code == 'network-request-failed') {
+        throw CustomException(message: 'تحقق من اتصالك بالإنترنت');
       } else if (e.code == 'email-already-in-use') {
         throw CustomException(message: 'هذا الحساب موجود بالفعل');
       } else {
@@ -32,35 +38,90 @@ class FirebaseAuthServece {
     }
   }
 
-  Future<User> SignInWithEmailAndPassword(
-      {required String email, required String password}) async {
+  // Future<User> SignInWithEmailAndPassword(
+  //     {required String email, required String password}) async {
+  //   try {
+  //     final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+  //       email: email,
+  //       password: password,
+  //     );
+  //     if ( credential.user!.emailVerified) {
+  //       return credential.user!;
+  //     } else {
+  //      // await credential.user!.sendEmailVerification(); // إعادة الإرسال لو حابب
+  //      // await FirebaseAuth.instance.signOut(); // نخرجه من السيشن
+  //       throw CustomException(message: 'not-check');
+  //     }
+  //   } on FirebaseAuthException catch (e) {
+  //     log('Excaption  in SignInWithEmailAndPassword. ${e.toString()}');
+  //     if (e.code == 'user-not-found') {
+  //       throw CustomException(
+  //           message: 'البريد الاليكتروني او كلمه المرور غير صحيحة');
+  //     } else if (e.code == 'wrong-password') {
+  //       throw CustomException(
+  //           message: 'البريد الاليكتروني او كلمه المرور غير صحيحة');
+  //     }else if (e.code == 'not-check') {
+  //       throw CustomException(
+  //           message: 'البريد الإلكتروني لم يتم تأكيده بعد');
+  //     } else if (e.code == 'too-many-requests') {
+  //       throw CustomException(
+  //           message: 'عدد كبير من المحاولات، حاول لاحقاً');
+  //     }else if (e.code == 'invalid-email') {
+  //       throw CustomException(
+  //           message: 'البريد الاليكتروني او كلمه المرور غير صحيحة');
+  //     } else if (e.code == 'invalid-credential') {
+  //       throw CustomException(
+  //           message: 'البريد الاليكتروني او كلمه المرور غير صحيحة');
+  //     } else if (e.code == 'network-request-failed') {
+  //       throw CustomException(message: 'قم بالاتصال بالانترنت');
+  //     } else {
+  //       log('Excaption  in SignInWithEmailAndPassword. ${e.toString()} code = ${e.code}');
+  //
+  //       throw CustomException(message: 'حدث خطأ,حاول لاحقا ');
+  //     }
+  //   } catch (e) {
+  //     log('Excaption  in SignInWithEmailAndPassword. ${e.toString()}');
+  //     throw CustomException(message: 'حدث خطأ,حاول لاحقا');
+  //   }
+  // }
+  Future<User> SignInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return credential.user!;
-    } on FirebaseAuthException catch (e) {
-      log('Excaption  in SignInWithEmailAndPassword. ${e.toString()}');
-      if (e.code == 'user-not-found') {
-        throw CustomException(
-            message: 'البريد الاليكتروني او كلمه المرور غير صحيحة');
-      } else if (e.code == 'wrong-password') {
-        throw CustomException(
-            message: 'البريد الاليكتروني او كلمه المرور غير صحيحة');
-      } else if (e.code == 'invalid-credential') {
-        throw CustomException(
-            message: 'البريد الاليكتروني او كلمه المرور غير صحيحة');
-      } else if (e.code == 'network-request-failed') {
-        throw CustomException(message: 'قم بالاتصال بالانترنت');
-      } else {
-        log('Excaption  in SignInWithEmailAndPassword. ${e.toString()} code = ${e.code}');
 
-        throw CustomException(message: 'حدث خطأ,حاول لاحقا ');
+      if (credential.user!.emailVerified) {
+        return credential.user!;
+      } else {
+        // إذا لم يتم التحقق، نرمي استثناء مخصص
+        throw CustomException(message: 'البريد الإلكتروني لم يتم تأكيده بعد');
+      }
+
+    } on FirebaseAuthException catch (e) {
+      log('FirebaseAuthException: ${e.code} - ${e.message}');
+      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
+        throw CustomException(message: 'البريد الإلكتروني أو كلمة المرور غير صحيحة');
+      } else if (e.code == 'too-many-requests') {
+        throw CustomException(message: 'عدد كبير من المحاولات، حاول لاحقاً');
+      } else if (e.code == 'invalid-email' || e.code == 'invalid-credential') {
+        throw CustomException(message: 'البريد الإلكتروني أو كلمة المرور غير صحيحة');
+      } else if (e.code == 'network-request-failed') {
+        throw CustomException(message: 'قم بالاتصال بالإنترنت');
+      } else {
+        throw CustomException(message: 'حدث خطأ، حاول لاحقاً');
       }
     } catch (e) {
-      log('Excaption  in SignInWithEmailAndPassword. ${e.toString()}');
-      throw CustomException(message: 'حدث خطأ,حاول لاحقا');
+      // هنا يتم التقاط CustomException أو أي استثناء آخر
+      log('Other Exception: ${e.toString()}');
+      if (e is CustomException) {
+        rethrow; // نعيد رميه عشان يظهر في السناك بار زي ما تحب
+      } else {
+        throw CustomException(message: 'حدث خطأ، حاول لاحقاً');
+      }
     }
   }
 

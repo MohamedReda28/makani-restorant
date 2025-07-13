@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/Widghts/CustomProgressHUD.dart';
 import '../../../../../core/helpes_function/BuildSnakBar.dart';
 import '../../cubits/Forgetpass_Cubit/forgetpass_cubit.dart';
@@ -15,7 +14,8 @@ class ForgetpassViewBodyBuilder extends StatelessWidget {
     return BlocConsumer<ForgetpassCubit, ForgetpassState>(
       listener: (context, state) {
         if (state is ForgetpassSuccess) {
-          BuildSnakBar(context, 'الذهاب الي صندوق رسائل الايميل');
+          BuildSnakBar(context, "الذهاب إلى صندوق رسائل الإيميل",type: SnackbarType.info);
+          Navigator.pop(context);
         }
         if (state is ForgetpassFaluir) {
           BuildSnakBar(context, state.messege);

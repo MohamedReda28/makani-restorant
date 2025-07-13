@@ -20,23 +20,23 @@ class SignUpView extends StatelessWidget {
         getIt<AuthRepo>(),
       ),
       child: Scaffold(
-        appBar: buildAppBar(context, title: 'حساب جديد'),
+        appBar: buildAppBar(context, title: 'انشاء حساب'),
         body: Builder(
             //دا عشان يحل مشكله context لان بدونه هيحصل مشكله لان context المتاح ميعرفش SignCubite عشان جاي بعده
             builder: (context) {
           return BlocConsumer<SignupCubit, SignupState>(
             listener: (context, state) {
               if (state is SignupSuccess) {
-                BuildSnakBar(context, 'تم انشاء حساب');
+                BuildSnakBar(context, 'تم إنشاء الحساب بنجاح. من فضلك فعّل بريدك الإلكتروني أولاً',type: SnackbarType.success);
                 Navigator.of(context).pop();
               }
               if (state is SignupFailure) {
-                BuildSnakBar(context, state.message);
+                BuildSnakBar(context, state.message,type: SnackbarType.error);
               }
             },
             builder: (context, state) => CustoProgressHUD(
               isLoading: state is SigninLoading ? true : false,
-              child: const SignupViewBody(),
+              child:  SignupViewBody(),
             ),
           );
         }),

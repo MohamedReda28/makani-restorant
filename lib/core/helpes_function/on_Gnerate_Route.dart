@@ -3,7 +3,7 @@ import 'package:makani/core/entitys/ProductEntity.dart';
 import '../../features/Home/peresntation/cubits/myorders/presintation/view/myorderview.dart';
 import '../../features/Home/peresntation/views/widgets/who _our.dart';
 import '../../features/checkout/presintation/views/checkout_view.dart';
-import '../../features/auth/peresentation/views/Views/Best Salling view.dart';
+import '../../features/auth/peresentation/views/Best Salling view.dart';
 import '../../features/Home/domines/entites/CardEntity.dart';
 import '../../features/Home/peresntation/views/mainView.dart';
 import '../../features/Home/peresntation/views/produt_View.dart';
@@ -27,9 +27,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case MainView.routeName:
       return MaterialPageRoute(builder: (context) => const MainView());
     case SiginView.routeName:
-      return MaterialPageRoute(builder: (context) => const SiginView());
+      return MaterialPageRoute(builder: (context) =>  SiginView());
     case SignUpView.routeName:
-      return MaterialPageRoute(builder: (context) => const SignUpView());
+      return MaterialPageRoute(builder: (context) =>  SignUpView());
     case ForgetpassView.routeName:
       return MaterialPageRoute(builder: (context) => const ForgetpassView());
     case ProdutsView.routeName:

@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../core/entitys/ProductEntity.dart';
 
-
 class CartItemEntity extends Equatable {
   final ProductEntity productEntity;
   int quantity;
@@ -14,7 +13,6 @@ class CartItemEntity extends Equatable {
   }
 
   num CalculteTotleWeight() {
-
     return double.parse(productEntity.unitAmount) * quantity;
   }
 
@@ -23,7 +21,11 @@ class CartItemEntity extends Equatable {
   }
 
   decreaseQuantity() {
-    quantity--;
+    if (quantity < 0) {
+      quantity--;
+    } else {
+      quantity = 1;
+    }
   }
 
   @override

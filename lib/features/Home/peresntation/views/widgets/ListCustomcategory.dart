@@ -8,37 +8,96 @@ import 'CustomCategory.dart';
 
 class ListCustomcategory extends StatelessWidget {
   const ListCustomcategory({super.key});
-
   @override
   Widget build(BuildContext context) {
     List<CategortEntity> categories = [
       CategortEntity(
           image: Assets.imagesBerger,
-          title: "برجر",
+          title: "برجر بيف",
           onTap: () {
             context
                 .read<ProductCubit>()
-                .getProductsByCatogry(catogry: 'berger');
+                .getProductsByCatogry(catogry: 'برجر بيف');
           }),
       CategortEntity(
-          image: Assets.imagesPitzza,
-          title: "بيتزا",
-          onTap: () {
-            context.read<ProductCubit>().getProductsByCatogry(catogry: 'pizza');
-          }),
-      CategortEntity(
-          image: Assets.imagesChicken,
-          title: "فراخ",
+          image: Assets.imagesBergerchick,
+          title: "برجر تشكن",
           onTap: () {
             context
                 .read<ProductCubit>()
-                .getProductsByCatogry(catogry: 'chiken');
+                .getProductsByCatogry(catogry: 'برجر تشكن');
+          }),
+      CategortEntity(
+          image: Assets.imagesSandweches,
+          title: "ساندوتشات",
+          onTap: () {
+            context
+                .read<ProductCubit>()
+                .getProductsByCatogry(catogry: 'ساندوتشات');
+          }),
+
+      CategortEntity(
+          image: Assets.imagesMashawe,
+          title: "مشوبات بالوزن",
+          onTap: () {
+            context
+                .read<ProductCubit>()
+                .getProductsByCatogry(catogry: 'مشوبات بالوزن');
           }),
       CategortEntity(
           image: Assets.imagesKereb,
           title: "كريبات",
           onTap: () {
-            context.read<ProductCubit>().getProductsByCatogry(catogry: 'kereb');
+            context
+                .read<ProductCubit>()
+                .getProductsByCatogry(catogry: 'كريبات');
+          }),
+      CategortEntity(
+          image: Assets.imagesWagpatrice,
+          title: " وجبات ارز",
+          onTap: () {
+            context
+                .read<ProductCubit>()
+                .getProductsByCatogry(catogry: 'وجبات ارز');
+          }),
+      CategortEntity(
+          image: Assets.imagesPoteto,
+          title: "المقبلات",
+          onTap: () {
+            context
+                .read<ProductCubit>()
+                .getProductsByCatogry(catogry: 'المقبلات');
+          }),
+
+      CategortEntity(
+          image: Assets.imagesSandwetsh,
+          title: "ساندوتشات شاورما",
+          onTap: () {
+            context
+                .read<ProductCubit>()
+                .getProductsByCatogry(catogry: 'ساندوتشات شاورما');
+          }),
+      CategortEntity(
+          image: Assets.imagesPitzza,
+          title: "بيتزا",
+          onTap: () {
+            context.read<ProductCubit>().getProductsByCatogry(catogry: 'بيتزا');
+          }),
+      CategortEntity(
+          image: Assets.imagesSwane,
+          title: "الصواني",
+          onTap: () {
+            context
+                .read<ProductCubit>()
+                .getProductsByCatogry(catogry: 'الصواني');
+          }),
+      CategortEntity(
+          image: Assets.imagesShawermawaz,
+          title: "شاورما بالوزن",
+          onTap: () {
+            context
+                .read<ProductCubit>()
+                .getProductsByCatogry(catogry: 'شاورما بالوزن');
           }),
       CategortEntity(
           image: Assets.imagesCola,
@@ -46,23 +105,7 @@ class ListCustomcategory extends StatelessWidget {
           onTap: () {
             context
                 .read<ProductCubit>()
-                .getProductsByCatogry(catogry: 'drinking');
-          }),
-      CategortEntity(
-          image: Assets.imagesPoteto,
-          title: "بطاطس",
-          onTap: () {
-            context
-                .read<ProductCubit>()
-                .getProductsByCatogry(catogry: 'potetos');
-          }),
-      CategortEntity(
-          image: Assets.imagesSandwetsh,
-          title: "ساندوتش",
-          onTap: () {
-            context
-                .read<ProductCubit>()
-                .getProductsByCatogry(catogry: 'sandwetsh');
+                .getProductsByCatogry(catogry: 'مشروبات');
           }),
     ];
 

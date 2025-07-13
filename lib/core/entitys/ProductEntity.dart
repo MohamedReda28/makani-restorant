@@ -11,7 +11,6 @@ class ProductEntity extends Equatable {
   final bool isFeature;
   String? imageUrl;
   final String catogry;
-  final num numberOfCaloric;
   final String unitAmount;
   final double avgReting;
   final int ratigCount;
@@ -25,7 +24,6 @@ class ProductEntity extends Equatable {
       required this.catogry,
       required this.avgReting,
       required this.reviews,
-      required this.numberOfCaloric,
       required this.unitAmount,
       required this.description,
       required this.code,

@@ -19,7 +19,7 @@ class CustomLoginBy extends StatelessWidget {
       child: Container(
         width: 343.w,
         height: 56.h,
-        padding: EdgeInsets.symmetric(horizontal: 8,vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 8),
         decoration: ShapeDecoration(
           color: Colors.white,
           shape: RoundedRectangleBorder(

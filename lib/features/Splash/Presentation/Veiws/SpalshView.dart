@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:makani/core/helpes_function/getUser.dart';
 import 'package:makani/features/Splash/Presentation/Veiws/widgets/splashViewBody.dart';
 import '../../../../constsns.dart';
-import '../../../../core/services/services/firebase_Auth_Servece.dart';
 import '../../../../core/services/services/shardpreferance_Singlton.dart';
 import '../../../Home/peresntation/views/mainView.dart';
 import '../../../auth/peresentation/views/SiginView.dart';
@@ -19,8 +18,8 @@ class SplashVeiw extends StatefulWidget {
 class _SplashVeiwState extends State<SplashVeiw> {
   @override
   void initState() {
-    excutNavigation();
     super.initState();
+    excutNavigation();
   }
 
   @override
@@ -32,23 +31,17 @@ class _SplashVeiwState extends State<SplashVeiw> {
 
   void excutNavigation() {
     bool isBordingViewSee = SharPref.getBool(kIsBordingViewSeen);
-    Future.delayed(
-      const Duration(seconds: 3),
-      () {
-        if (isBordingViewSee) {
-          //var isloggedIn = FirebaseAuthServece().isLoggedIn();
-          var isloggedIn = getUser()!=null;
-
-          if (isloggedIn) {
-            Navigator.pushReplacementNamed(context, MainView.routeName);
-
-          } else {
-            Navigator.pushReplacementNamed(context, SiginView.routeName);
-          }
+    Future.delayed(const Duration(seconds: 3), () {
+      if (isBordingViewSee) {
+        var isloggedIn = getUser() != null;
+        if (isloggedIn) {
+          Navigator.pushReplacementNamed(context, MainView.routeName);
         } else {
-          Navigator.pushReplacementNamed(context, OnBordView.routeName);
+          Navigator.pushReplacementNamed(context, SiginView.routeName);
         }
-      },
-    );
+      } else {
+        Navigator.pushReplacementNamed(context, OnBordView.routeName);
+      }
+    });
   }
 }

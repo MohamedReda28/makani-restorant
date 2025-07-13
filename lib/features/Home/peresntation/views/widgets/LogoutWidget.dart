@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:makani/features/auth/peresentation/views/SiginView.dart';
+import '../../../../../core/helpes_function/BuildSnakBar.dart';
 import '../../../../../core/helpes_function/deleteUserFromDiv.dart';
 import '../../../../../core/uitels/App_Color.dart';
 import '../../../../../core/uitels/App_TextStyle.dart';
@@ -17,6 +18,7 @@ class LogoutWidget extends StatelessWidget {
             context: context,
             onConfirm: () {
               deleteUser();
+               BuildSnakBar(context, "تمت تسجيل الخروج بنجاح",type: SnackbarType.success);
               Navigator.pushNamed(context, SiginView.routeName);
             });
       },

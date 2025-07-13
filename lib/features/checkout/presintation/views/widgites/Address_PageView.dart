@@ -27,7 +27,7 @@ class AddressPageview extends StatelessWidget {
                 height: 24,
               ),
               CustomTextFormField(
-                  hinttext: 'الاسم كامل',
+                  labletext: 'الاسم كامل',
                   textInputType: TextInputType.name,
                   onSaved: (value) {
                     context.read<OrderInputEntity>().addressOrderentity.name =
@@ -37,7 +37,7 @@ class AddressPageview extends StatelessWidget {
                 height: 8,
               ),
               CustomTextFormField(
-                  hinttext: 'المدينه',
+                  labletext: 'المدينه',
                   textInputType: TextInputType.name,
                   onSaved: (value) {
                     context.read<OrderInputEntity>().addressOrderentity.city =
@@ -47,7 +47,7 @@ class AddressPageview extends StatelessWidget {
                 height: 8,
               ),
               CustomTextFormField(
-                  hinttext: 'الحي',
+                  labletext: 'الحي',
                   textInputType: TextInputType.name,
                   onSaved: (value) {
                     context.read<OrderInputEntity>().addressOrderentity.address =
@@ -58,7 +58,7 @@ class AddressPageview extends StatelessWidget {
               ),
 
               CustomTextFormField(
-                  hinttext: 'رقم الهاتف',
+                  labletext: 'رقم الهاتف',
                   textInputType: TextInputType.number,
                   onSaved: (value) {
                     context.read<OrderInputEntity>().addressOrderentity!.phone =

@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-
 import '../../../../../core/repos/order_repo/order_reop.dart';
 import '../../../domines/entitys/Order_Entity.dart';
 part 'order_state.dart';
