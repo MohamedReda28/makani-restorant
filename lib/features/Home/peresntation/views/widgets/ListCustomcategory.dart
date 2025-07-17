@@ -12,6 +12,12 @@ class ListCustomcategory extends StatelessWidget {
   Widget build(BuildContext context) {
     List<CategortEntity> categories = [
       CategortEntity(
+          image: Assets.imagesLogo,
+          title: "الكل",
+          onTap: () {
+            context.read<ProductCubit>().getProducts();
+          }),
+      CategortEntity(
           image: Assets.imagesBerger,
           title: "برجر بيف",
           onTap: () {
@@ -35,7 +41,6 @@ class ListCustomcategory extends StatelessWidget {
                 .read<ProductCubit>()
                 .getProductsByCatogry(catogry: 'ساندوتشات');
           }),
-
       CategortEntity(
           image: Assets.imagesMashawe,
           title: "مشوبات بالوزن",
@@ -68,7 +73,6 @@ class ListCustomcategory extends StatelessWidget {
                 .read<ProductCubit>()
                 .getProductsByCatogry(catogry: 'المقبلات');
           }),
-
       CategortEntity(
           image: Assets.imagesSandwetsh,
           title: "ساندوتشات شاورما",
@@ -82,6 +86,14 @@ class ListCustomcategory extends StatelessWidget {
           title: "بيتزا",
           onTap: () {
             context.read<ProductCubit>().getProductsByCatogry(catogry: 'بيتزا');
+          }),
+      CategortEntity(
+          image: Assets.imagesWagpatshaw,
+          title: "وجبات شاورما",
+          onTap: () {
+            context
+                .read<ProductCubit>()
+                .getProductsByCatogry(catogry: 'وجبات شاورما');
           }),
       CategortEntity(
           image: Assets.imagesSwane,
@@ -99,6 +111,7 @@ class ListCustomcategory extends StatelessWidget {
                 .read<ProductCubit>()
                 .getProductsByCatogry(catogry: 'شاورما بالوزن');
           }),
+
       CategortEntity(
           image: Assets.imagesCola,
           title: "مشروبات",

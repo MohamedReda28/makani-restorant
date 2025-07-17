@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:makani/features/Home/peresntation/cubits/myorders/domins/repo/orderRebo.dart';
 import '../../../domins/entitys/order entity.dart';
+import '../../../domins/repo/orderRepo.dart';
 part 'orders_state.dart';
 
 class OrdersCubit extends Cubit<OrdersState> {
@@ -13,10 +13,10 @@ class OrdersCubit extends Cubit<OrdersState> {
     emit(OrdersLoading());
     var result = await ordersrebo.getOrders(uID);
     result.fold(
-      (Failur) => emit(
+          (Failur) => emit(
         OrdersFailure(message: Failur.message),
       ),
-      (orders) => emit(
+          (orders) => emit(
         OrdersSuccess(orders: orders),
       ),
     );

@@ -15,7 +15,7 @@ class OrederRepoImpl implements OrderRepo {
     try {
 
       final nextOrderNumber = await getNextOrderNumber();
-      final orderNumber = 'ORD-${nextOrderNumber.toString().padLeft(5, '0')}';
+      final orderNumber = nextOrderNumber.toString();
       var order = OrderModel.fromOEntity(orderEntity).copyWith(
         orderNumber: orderNumber,
       );

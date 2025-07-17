@@ -1,6 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:makani/core/uitels/backend%20Impoint.dart';
-
 import 'DataBase_Serveces.dart';
 
 //دا كلاس خاص بالفير بيز وبيرث من DatabaseServeces
@@ -141,6 +139,4 @@ class FirestoerServeces implements DataBaseServeces {
       await ref.add(data);
     }
   }
-
-
 }

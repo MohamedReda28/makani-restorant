@@ -1,5 +1,4 @@
 
-
 import '../../domins/entitys/order entity.dart';
 
 class DisplayOrderModel {
@@ -14,10 +13,10 @@ class DisplayOrderModel {
 
 
   DisplayOrderModel({required this.date,
-      required this.totalPrice,
-      required this.uID,
-      required this.oID,
-      required this.status,
+    required this.totalPrice,
+    required this.uID,
+    required this.oID,
+    required this.status,
     required this.ordernum,
     required this.numoforders});
 
@@ -29,7 +28,7 @@ class DisplayOrderModel {
       status: json['status'],
       date:json['date'],
       ordernum:json['orderNumber'] ,
-       numoforders: json ['orderProductModel'][0]['quantity'],
+      numoforders: json ['orderProductModel'][0]['quantity'],
     );
   }
 
@@ -42,7 +41,7 @@ class DisplayOrderModel {
       ordernum: ordernum,
       uID: uID,
       numoforders: numoforders,
-      );
-     
+    );
+
   }
 }

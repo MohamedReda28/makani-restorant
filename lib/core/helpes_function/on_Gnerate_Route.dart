@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:makani/core/entitys/ProductEntity.dart';
-import '../../features/Home/peresntation/cubits/myorders/presintation/view/myorderview.dart';
+import '../../features/myorders/presintation/view/myorderview.dart';
 import '../../features/Home/peresntation/views/widgets/who _our.dart';
 import '../../features/checkout/presintation/views/checkout_view.dart';
 import '../../features/auth/peresentation/views/Best Salling view.dart';

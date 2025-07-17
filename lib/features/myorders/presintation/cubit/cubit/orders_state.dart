@@ -18,4 +18,3 @@ final class OrdersSuccess extends OrdersState {
 
   OrdersSuccess({required this.orders});
 }
-

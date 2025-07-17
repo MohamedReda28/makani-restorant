@@ -17,7 +17,7 @@ class AddOrderCubitBlocBuilder extends StatelessWidget {
           isLoading: state is AddOrderLoading, child: child);
     }, listener: (context, state) {
       if (state is AddOrderSuccess) {
-        BuildSnakBar(context, 'تم ت إضافة الطلب بنجاح',type: SnackbarType.success);
+        BuildSnakBar(context, 'تم إضافة الطلب بنجاح',type: SnackbarType.success);
       } else if (state is AddOrderFaluir) {
         BuildSnakBar(context, state.messege);
       }

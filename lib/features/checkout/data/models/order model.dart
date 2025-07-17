@@ -12,11 +12,14 @@ class OrderModel {
   final AddressOrderModel addressOrderModel;
   final List<Orderproductmodel> orderProductModel;
   final String payMethod;
+  final String methodOfReceipt;
+
   final String? orderNumber;
 
 
   OrderModel(
       {required this.totalPrice,
+        required this.methodOfReceipt,
       required this.uID,
       required this.oID,
       required this.addressOrderModel,
@@ -26,13 +29,14 @@ class OrderModel {
 
   factory OrderModel.fromOEntity(OrderInputEntity orderEntity) {
     return OrderModel(
-      oID: Uuid().v4(),
+      oID: const Uuid().v4(),
+      methodOfReceipt:orderEntity.methodOfReceipt!,
       totalPrice: orderEntity.cartList.CalculteTotlePrice(),
       uID: orderEntity.uID,
       orderNumber: null,
       addressOrderModel:
           AddressOrderModel.fromEntity(orderEntity.addressOrderentity),
-      payMethod: orderEntity.paywithCash! ? 'Cach' : 'Paypal',
+      payMethod: orderEntity.paywithCash! ? 'كاش' : 'انلاين',
       orderProductModel: orderEntity.cartList.carsItems
           .map((e) => Orderproductmodel.fromEntity(e))
           .toList(),
@@ -46,10 +50,11 @@ class OrderModel {
       'uID': uID,
       'status': 'pending',
       'orderNumber': orderNumber,
-      'date': DateFormat('yyyy-MM-dd HH:mm').format(DateTime.now()),
+      'date': DateFormat('yyyy-MM-dd HH:mm', 'en_US').format(DateTime.now()),
       'addressOrderModel': addressOrderModel.toJson(),
       'orderProductModel': orderProductModel.map((e) => e.toJson()).toList(),
-      'payMethod': payMethod
+      'payMethod': payMethod,
+      'methodOfReceipt':methodOfReceipt
     };
   }
 
@@ -60,6 +65,7 @@ class OrderModel {
     AddressOrderModel? addressOrderModel,
     List<Orderproductmodel>? orderProductModel,
     String? payMethod,
+    String? methodOfReceipt,
     String? orderNumber,
   }) {
     return OrderModel(
@@ -69,6 +75,7 @@ class OrderModel {
       addressOrderModel: addressOrderModel ?? this.addressOrderModel,
       orderProductModel: orderProductModel ?? this.orderProductModel,
       payMethod: payMethod ?? this.payMethod,
+      methodOfReceipt: methodOfReceipt??this.methodOfReceipt,
       orderNumber: orderNumber ?? this.orderNumber,
     );
   }

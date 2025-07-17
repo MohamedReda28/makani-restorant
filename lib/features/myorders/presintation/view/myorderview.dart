@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:makani/features/Home/peresntation/cubits/myorders/domins/repo/orderRebo.dart';
-import 'package:makani/features/Home/peresntation/cubits/myorders/presintation/view/widgets/MyorderviewBody.dart';
-import '../../../../../../../core/services/services/git_it_Service.dart';
+import 'package:makani/features/myorders/presintation/view/widgets/myorderviewBody.dart';
+import '../../../../core/services/services/git_it_Service.dart';
+import '../../domins/repo/orderRepo.dart';
 import '../cubit/cubit/orders_cubit.dart';
 
 class Myorderview extends StatelessWidget {
@@ -18,4 +18,3 @@ class Myorderview extends StatelessWidget {
     );
   }
 }
-

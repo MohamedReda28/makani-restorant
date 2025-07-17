@@ -66,13 +66,7 @@ class CartItim extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Text(
-                          '${cartItemEntity.CalculteTotleWeight()} كم',
-                          textAlign: TextAlign.right,
-                          style: AppStyle.regular13.copyWith(
-                            color: AppColor.lightPrimaryColor,
-                          ),
-                        ),
+                        const SizedBox(),
                         Row(
                           children: [
                             Cartitemactionbotton(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:makani/features/Home/peresntation/views/widgets/who%20_our.dart';
 import '../../../../../core/uitels/app_images.dart';
 import '../../../data/Models/ItemProfileModel.dart';
-import '../../cubits/myorders/presintation/view/myorderview.dart';
+import '../../../../myorders/presintation/view/myorderview.dart';
 import 'ItemInProfile.dart';
 
 class ListIteminprofile extends StatelessWidget {

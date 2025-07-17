@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import '../../../../../../../../core/Widghts/customErrorWidght.dart';
-import '../../../../../../../../core/helpes_function/git_dammy_orders.dart';
+import '../../../../../core/Widghts/customErrorWidght.dart';
+import '../../../../../core/helpes_function/git_dammy_orders.dart';
 import '../../cubit/cubit/orders_cubit.dart';
 import 'ListviewOrders.dart';
 
@@ -24,5 +24,3 @@ class ListviewOrdersBlocBuilder extends StatelessWidget {
     });
   }
 }
-
-
