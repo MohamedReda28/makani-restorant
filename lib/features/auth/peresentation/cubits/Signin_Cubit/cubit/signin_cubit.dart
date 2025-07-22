@@ -28,8 +28,14 @@ class SigninCubit extends Cubit<SigninState> {
     emit(SigninLoading());
     var result = await authRepo.signInWithGoogle();
     result.fold(
-      (Failur) => emit(SigninFailure(message: Failur.message)),
-      (userEntity) => emit(SigninSuccess(userEntity: userEntity)),
+          (failure) {
+        if (failure.message == 'تم إلغاء تسجيل الدخول من قبل المستخدم') {
+          emit(SigninInitial()); // بيرجع للحالة الطبيعية من غير ما يظهر خطأ
+        } else {
+          emit(SigninFailure(message: failure.message));
+        }
+      },
+          (userEntity) => emit(SigninSuccess(userEntity: userEntity)),
     );
   }
 

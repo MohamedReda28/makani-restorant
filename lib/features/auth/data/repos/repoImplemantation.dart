@@ -6,7 +6,7 @@ import 'package:makani/core/services/services/DataBase_Serveces.dart';
 import '../../../../constsns.dart';
 import '../../../../core/erroes/Failur.dart';
 import '../../../../core/erroes/excaptins.dart';
-import '../../../../core/services/services/firebase_Auth_Servece.dart';
+import '../../../../core/services/services/AuthServece.dart';
 import '../../../../core/uitels/backend Impoint.dart';
 import '../../domain/entites/UserEntites.dart';
 import '../../domain/repos/Auth Repo.dart';
@@ -15,10 +15,10 @@ import '../Models/UserModel.dart';
 class Repoimplemantation extends AuthRepo {
   Repoimplemantation({
     required this.dataBaseServeces,
-    required this.firebaseAuthServece,
+    required this.authService,
   });
 
-  final FirebaseAuthServece firebaseAuthServece;
+  final AuthService authService;
   final DataBaseServeces dataBaseServeces;
 
   @override
@@ -26,19 +26,19 @@ class Repoimplemantation extends AuthRepo {
       String email, String password, String name) async {
     User? user;
     try {
-      user = await firebaseAuthServece.CreateUserWithEmailAndPassword(
+      user = await authService.createUserWithEmailAndPassword(
           email: email, password: password);
       var userEntity = UserEntity(name: name, email: email, uid: user.uid);
       await addUserData(user: userEntity);
       return right(userEntity);
     } on CustomException catch (e) {
       if (user != null) {
-        firebaseAuthServece.deleteUser();
+        authService.deleteUser();
       }
       return left(ServerFailure(e.message));
     } catch (e) {
       if (user != null) {
-        firebaseAuthServece.deleteUser();
+        authService.deleteUser();
       }
       log('Excaption  in CreateUserWithEmailAndPassword. ${e.toString()}');
 
@@ -52,7 +52,7 @@ class Repoimplemantation extends AuthRepo {
     String password,
   ) async {
     try {
-      var user = await firebaseAuthServece.SignInWithEmailAndPassword(
+      var user = await authService.signInWithEmailAndPassword(
           email: email, password: password);
       var userEntity = await getUserData(uid: user.uid);
       await saveUserData(user: userEntity);
@@ -69,25 +69,31 @@ class Repoimplemantation extends AuthRepo {
   Future<Either<Failur, UserEntity>> signInWithGoogle() async {
     User? user;
     try {
-      user = await firebaseAuthServece.signInWithGoogle();
+      user = await authService.signInWithGoogle();
+
       var userEntity = UserModel.fromFirebaseUser(user);
       var isUserExsit = await dataBaseServeces.chackIfDataExist(
-          path: BackEndImpoint.isUserExist, documentId: user.uid);
+        path: BackEndImpoint.isUserExist,
+        documentId: user.uid,
+      );
 
       if (isUserExsit) {
         await getUserData(uid: user.uid);
       } else {
         await addUserData(user: userEntity);
       }
-      await saveUserData(user: userEntity);
 
+      await saveUserData(user: userEntity);
       return right(userEntity);
+
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.message));
     } on Exception catch (e) {
       if (user != null) {
-        firebaseAuthServece.deleteUser();
+        authService.deleteUser();
       }
-      log('Excaption in signInWithGoogle. ${e.toString()}');
-      return left(ServerFailure('حدث خطأ, حاول لاحقا'));
+      log('Exception in signInWithGoogle: ${e.toString()}');
+      return left(ServerFailure('حدث خطأ, حاول لاحقاً'));
     }
   }
 
@@ -95,7 +101,7 @@ class Repoimplemantation extends AuthRepo {
   Future<Either<Failur, UserEntity>> signInWithFacebook() async {
     User? user;
     try {
-      user = await firebaseAuthServece.signInWithFacebook();
+      user = await authService.signInWithFacebook();
       var userEntity = UserModel.fromFirebaseUser(user);
       var isUserExsit = await dataBaseServeces.chackIfDataExist(
           path: BackEndImpoint.isUserExist, documentId: user.uid);
@@ -110,7 +116,7 @@ class Repoimplemantation extends AuthRepo {
       return right(userEntity);
     } on Exception catch (e) {
       if (user != null) {
-        firebaseAuthServece.deleteUser();
+        authService.deleteUser();
       }
       log('Excaption in signInWithFacebook. ${e.toString()}');
       return left(ServerFailure('حدث خطأ, حاول لاحقا'));
@@ -146,7 +152,7 @@ class Repoimplemantation extends AuthRepo {
   Future<Either<Failur, void>> sendPasswordResetEmail(
       {required String email}) async {
     try {
-      await firebaseAuthServece.sendPasswordResetEmail(email: email);
+      await authService.sendPasswordResetEmail(email: email);
       return right(null);
     } on CustomException catch (e) {
       return left(ServerFailure(e.message));

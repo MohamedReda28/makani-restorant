@@ -6,6 +6,7 @@ abstract class AppStyle {
     fontWeight: FontWeight.bold,
     fontSize: 13.sp,
   );
+
   static  TextStyle semibold13 = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 13.sp,

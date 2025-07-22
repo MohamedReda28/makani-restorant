@@ -12,6 +12,7 @@ DisplayOrderEntity  getdammyOrder(){
      status: 'جاري المعالجة',
      date: '2025-05-18',
      ordernum: '00001',
+     orderproducts: [],
 
    );
  }

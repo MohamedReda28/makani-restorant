@@ -2,13 +2,14 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:makani/core/services/services/AuthServece.dart';
 import '../../erroes/excaptins.dart';
 
 
 
 
-class FirebaseAuthServece {
-  Future<User> CreateUserWithEmailAndPassword(
+class FirebaseAuthServece implements AuthService{
+  Future<User> createUserWithEmailAndPassword(
       {required String email, required String password}) async {
     try {
       final credential =
@@ -38,53 +39,8 @@ class FirebaseAuthServece {
     }
   }
 
-  // Future<User> SignInWithEmailAndPassword(
-  //     {required String email, required String password}) async {
-  //   try {
-  //     final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //       email: email,
-  //       password: password,
-  //     );
-  //     if ( credential.user!.emailVerified) {
-  //       return credential.user!;
-  //     } else {
-  //      // await credential.user!.sendEmailVerification(); // إعادة الإرسال لو حابب
-  //      // await FirebaseAuth.instance.signOut(); // نخرجه من السيشن
-  //       throw CustomException(message: 'not-check');
-  //     }
-  //   } on FirebaseAuthException catch (e) {
-  //     log('Excaption  in SignInWithEmailAndPassword. ${e.toString()}');
-  //     if (e.code == 'user-not-found') {
-  //       throw CustomException(
-  //           message: 'البريد الاليكتروني او كلمه المرور غير صحيحة');
-  //     } else if (e.code == 'wrong-password') {
-  //       throw CustomException(
-  //           message: 'البريد الاليكتروني او كلمه المرور غير صحيحة');
-  //     }else if (e.code == 'not-check') {
-  //       throw CustomException(
-  //           message: 'البريد الإلكتروني لم يتم تأكيده بعد');
-  //     } else if (e.code == 'too-many-requests') {
-  //       throw CustomException(
-  //           message: 'عدد كبير من المحاولات، حاول لاحقاً');
-  //     }else if (e.code == 'invalid-email') {
-  //       throw CustomException(
-  //           message: 'البريد الاليكتروني او كلمه المرور غير صحيحة');
-  //     } else if (e.code == 'invalid-credential') {
-  //       throw CustomException(
-  //           message: 'البريد الاليكتروني او كلمه المرور غير صحيحة');
-  //     } else if (e.code == 'network-request-failed') {
-  //       throw CustomException(message: 'قم بالاتصال بالانترنت');
-  //     } else {
-  //       log('Excaption  in SignInWithEmailAndPassword. ${e.toString()} code = ${e.code}');
-  //
-  //       throw CustomException(message: 'حدث خطأ,حاول لاحقا ');
-  //     }
-  //   } catch (e) {
-  //     log('Excaption  in SignInWithEmailAndPassword. ${e.toString()}');
-  //     throw CustomException(message: 'حدث خطأ,حاول لاحقا');
-  //   }
-  // }
-  Future<User> SignInWithEmailAndPassword({
+
+  Future<User> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
@@ -127,9 +83,12 @@ class FirebaseAuthServece {
 
   Future<User> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
+    if (googleUser == null) {
+      // المستخدم لغى تسجيل الدخول
+      throw CustomException(message: 'لم تكتمل عمليه التسجيل'); // نعمل اكسبشن خاص
+    }
     final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
+        await googleUser.authentication;
 
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,

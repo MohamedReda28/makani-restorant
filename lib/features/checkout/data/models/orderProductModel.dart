@@ -1,5 +1,6 @@
-
 import '../../../Home/domines/entites/CartItemEntity.dart';
+import '../../../myorders/domins/entitys/order entity.dart';
+import '../../../myorders/domins/entitys/orderProductEntity.dart';
 
 class Orderproductmodel {
   final String name;
@@ -24,6 +25,15 @@ class Orderproductmodel {
       Urlimage: cartItemEntity.productEntity.imageUrl!,
     );
   }
+  factory Orderproductmodel.fromJson(Map<String, dynamic> json) {
+    return Orderproductmodel(
+      name: json['name'],
+      code: json['code'],
+      price: json['price'],
+      quantity: json['quantity'],
+      Urlimage: json['Urlimage'],
+    );
+  }
 
   toJson() {
     return {
@@ -33,5 +43,15 @@ class Orderproductmodel {
       'quantity': quantity,
       'Urlimage': Urlimage,
     };
+  }
+
+  OrderproductEntity toEntity() {
+    return OrderproductEntity(
+      name: name,
+      code: code,
+      price: price,
+      quantity: quantity,
+      Urlimage: Urlimage,
+    );
   }
 }

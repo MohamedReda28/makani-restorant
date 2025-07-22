@@ -48,7 +48,7 @@ class OrderModel {
       'oID': oID,
       'totalPrice': totalPrice,
       'uID': uID,
-      'status': 'pending',
+      'status': 'قيد الانتظار',
       'orderNumber': orderNumber,
       'date': DateFormat('yyyy-MM-dd HH:mm', 'en_US').format(DateTime.now()),
       'addressOrderModel': addressOrderModel.toJson(),

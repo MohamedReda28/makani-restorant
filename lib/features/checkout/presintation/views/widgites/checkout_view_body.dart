@@ -1,13 +1,10 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import '../../../../../constsns.dart';
 import '../../../../../core/Widghts/Custom_Botton.dart';
 import '../../../../../core/helpes_function/BuildSnakBar.dart';
 import '../../../../Home/peresntation/views/mainView.dart';
 import '../../../domines/entitys/Order_Entity.dart';
-import '../../../domines/entitys/paypal_payment_entity/paypal_payment_entity.dart';
 import '../../maneger/addProductCubit/order_cubit.dart';
 import 'CheckoutStepsListview.dart';
 import 'CustombottonnavigationTapbar.dart';
@@ -121,35 +118,35 @@ class _Checkout_View_BodyState extends State<Checkout_View_Body> {
     }
   }
 
-  void processpayment(BuildContext context) {
-    var orderEntity = context.read<OrderInputEntity>();
-    PaypalPaymentEntity paypalPaymentEntity =
-        PaypalPaymentEntity.fromEntity(orderEntity);
-    var ordercubit = context.read<AddOrderCubit>();
-    log(paypalPaymentEntity.toJson().toString());
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (BuildContext context) => PaypalCheckoutView(
-        sandboxMode: true,
-        clientId: "",
-        secretKey: "",
-        transactions: [
-          paypalPaymentEntity.toJson(),
-        ],
-        note: "Contact us for any questions on your order.",
-        onSuccess: (Map params) async {
-          print("onSuccess: $params");
-          Navigator.pop(context);
-          ordercubit.addOrder(orderEntity);
-        },
-        onError: (error) {
-          Navigator.pop(context);
-          log(error.toString());
-          BuildSnakBar(context, 'حدث خطأ في عمليه الدفع');
-        },
-        onCancel: () {
-          print('cancelled:');
-        },
-      ),
-    ));
-  }
+  // void processpayment(BuildContext context) {
+  //   var orderEntity = context.read<OrderInputEntity>();
+  //   PaypalPaymentEntity paypalPaymentEntity =
+  //       PaypalPaymentEntity.fromEntity(orderEntity);
+  //   var ordercubit = context.read<AddOrderCubit>();
+  //   log(paypalPaymentEntity.toJson().toString());
+  //   Navigator.of(context).push(MaterialPageRoute(
+  //     builder: (BuildContext context) => PaypalCheckoutView(
+  //       sandboxMode: true,
+  //       clientId: "",
+  //       secretKey: "",
+  //       transactions: [
+  //         paypalPaymentEntity.toJson(),
+  //       ],
+  //       note: "Contact us for any questions on your order.",
+  //       onSuccess: (Map params) async {
+  //         print("onSuccess: $params");
+  //         Navigator.pop(context);
+  //         ordercubit.addOrder(orderEntity);
+  //       },
+  //       onError: (error) {
+  //         Navigator.pop(context);
+  //         log(error.toString());
+  //         BuildSnakBar(context, 'حدث خطأ في عمليه الدفع');
+  //       },
+  //       onCancel: () {
+  //         print('cancelled:');
+  //       },
+  //     ),
+  //   ));
+  // }
 }

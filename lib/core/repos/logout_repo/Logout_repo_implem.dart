@@ -5,14 +5,16 @@ import 'package:makani/core/helpes_function/deleteUserFromDiv.dart';
 import 'package:makani/core/repos/logout_repo/logout_repo.dart';
 import 'package:makani/core/services/services/firebase_Auth_Servece.dart';
 
-class LogoutRepoImple extends LogoutRepo{
-   final FirebaseAuthServece firebaseAuthServece;
+import '../../services/services/AuthServece.dart';
 
-  LogoutRepoImple({required this.firebaseAuthServece});
+class LogoutRepoImple extends LogoutRepo{
+   final AuthService authService;
+
+  LogoutRepoImple({required this.authService});
   @override
   Future<Either<Failur, void>> lougoutUser() async{
     try{
-      await firebaseAuthServece.deleteUser();
+      await authService.deleteUser();
       await deleteUser();
       return const Right(null);
 

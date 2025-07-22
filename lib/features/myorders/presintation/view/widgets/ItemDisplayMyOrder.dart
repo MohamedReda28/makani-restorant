@@ -1,33 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:makani/core/uitels/App_TextStyle.dart';
-import 'package:makani/core/uitels/app_images.dart';
-
+import 'package:makani/features/myorders/presintation/view/widgets/productorderItem.dart';
 import '../../../domins/entitys/order entity.dart';
-
 
 class Itemdisplaymyorder extends StatelessWidget {
   const Itemdisplaymyorder({super.key, required this.orderEntity});
   final DisplayOrderEntity orderEntity;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 19),
-      clipBehavior: Clip.antiAlias,
-      decoration: const BoxDecoration(
-        color: Color(0x7FF2F3F3),
-      ),
-      child: Row(
-        children: [
-          SvgPicture.asset(Assets.imagesBox2),
-          SizedBox(
-            width: 12.w,
-          ),
-          Column(
+    return Card(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 19),
+        clipBehavior: Clip.antiAlias,
+        decoration: const BoxDecoration(
+          color: Color(0x60DCDCE8),
+        ),
+        child: Expanded(
+          child: Column(
+            //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'طلب رقم: ${orderEntity.ordernum}',
+                'طلب رقم : ${orderEntity.ordernum}',
                 style: AppStyle.bold13,
               ),
               SizedBox(
@@ -40,6 +34,7 @@ class Itemdisplaymyorder extends StatelessWidget {
                 height: 6.h,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text.rich(
                     TextSpan(
@@ -58,16 +53,11 @@ class Itemdisplaymyorder extends StatelessWidget {
                   SizedBox(
                     width: 18.w,
                   ),
-                  Text(
-                    '${orderEntity.totalPrice} جنية',
-                    style: const TextStyle(
-                      color: Color(0xFF0C0D0D) /* Grayscale-950 */,
-                      fontSize: 13,
-                      fontFamily: 'Cairo',
-                      fontWeight: FontWeight.w700,
-                    ),
-                  )
+                  Text('${orderEntity.totalPrice} جنية', style: AppStyle.bold13)
                 ],
+              ),
+              SizedBox(
+                height: 6.h,
               ),
               Text.rich(
                 TextSpan(
@@ -83,9 +73,12 @@ class Itemdisplaymyorder extends StatelessWidget {
                   ],
                 ),
               ),
+              ListProductorderitem(
+                products: orderEntity.orderproducts,
+              ),
             ],
-          )
-        ],
+          ),
+        ),
       ),
     );
   }

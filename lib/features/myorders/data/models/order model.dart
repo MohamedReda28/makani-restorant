@@ -1,4 +1,5 @@
 
+import '../../../checkout/data/models/orderProductModel.dart';
 import '../../domins/entitys/order entity.dart';
 
 class DisplayOrderModel {
@@ -9,6 +10,8 @@ class DisplayOrderModel {
   final String status;
   final String date;
   final String ordernum;
+  final List<Orderproductmodel> orderProducts;
+
 
 
 
@@ -17,6 +20,7 @@ class DisplayOrderModel {
     required this.uID,
     required this.oID,
     required this.status,
+    required this.orderProducts,
     required this.ordernum,
     required this.numoforders});
 
@@ -28,7 +32,10 @@ class DisplayOrderModel {
       status: json['status'],
       date:json['date'],
       ordernum:json['orderNumber'] ,
-      numoforders: json ['orderProductModel'][0]['quantity'],
+      orderProducts: List<Orderproductmodel>.from(
+          json['orderProductModel'].map((x) => Orderproductmodel.fromJson(x))),
+      numoforders: json['orderProductModel'].length,
+
     );
   }
 
@@ -40,7 +47,9 @@ class DisplayOrderModel {
       date: date,
       ordernum: ordernum,
       uID: uID,
+      orderproducts:  orderProducts.map((e) => e.toEntity()).toList(),
       numoforders: numoforders,
+
     );
 
   }

@@ -31,7 +31,7 @@ class SiginView extends StatelessWidget {
               }
             },
             builder: (context, state) => CustoProgressHUD(
-              isLoading: state is SigninLoading ? true : false,
+              isLoading: state is SigninLoading,
               child:  const SiginVeiwBody(),
             ),
           );

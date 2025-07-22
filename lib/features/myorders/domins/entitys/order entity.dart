@@ -1,5 +1,7 @@
 
 
+import 'orderProductEntity.dart';
+
 class DisplayOrderEntity {
   final double totalPrice;
   final String uID;
@@ -8,9 +10,11 @@ class DisplayOrderEntity {
   final String status;
   final String date;
   final String ordernum;
+  final List<OrderproductEntity>orderproducts;
 
 
   DisplayOrderEntity({
+    required this.orderproducts,
     required this.totalPrice,
     required this.ordernum,
     required this.date,

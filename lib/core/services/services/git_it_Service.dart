@@ -1,6 +1,5 @@
 
 import 'package:get_it/get_it.dart';
-
 import 'package:makani/core/repos/logout_repo/Logout_repo_implem.dart';
 import 'package:makani/core/repos/logout_repo/logout_repo.dart';
 import 'package:makani/features/Home/data/repo/repo_Imple.dart';
@@ -13,6 +12,7 @@ import '../../repos/order_repo/order_reop.dart';
 import '../../repos/order_repo/oreder_repo_impl.dart';
 import '../../repos/product_repo/product_repo.dart';
 import '../../repos/product_repo/product_repo_impl.dart';
+import 'AuthServece.dart';
 import 'DataBase_Serveces.dart';
 import 'fireStore_Servece.dart';
 import 'firebase_Auth_Servece.dart';
@@ -22,19 +22,19 @@ final getIt = GetIt.instance;
 void setupGitit() {
 
 
-  getIt.registerSingleton<FirebaseAuthServece>(FirebaseAuthServece());
+  getIt.registerSingleton<AuthService>(FirebaseAuthServece());
   getIt.registerSingleton<DataBaseServeces>(FirestoerServeces());
 
   getIt.registerSingleton<AuthRepo>(
     Repoimplemantation(
-      firebaseAuthServece: getIt<FirebaseAuthServece>(),
+      authService: getIt<AuthService>(),
       dataBaseServeces: getIt<DataBaseServeces>(),
     ),
   );
 
   getIt.registerSingleton<LogoutRepo>(
     LogoutRepoImple(
-      firebaseAuthServece: getIt<FirebaseAuthServece>(),
+      authService: getIt<AuthService>(),
     ),
   );
 
