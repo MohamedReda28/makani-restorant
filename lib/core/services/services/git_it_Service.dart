@@ -43,6 +43,7 @@ void setupGitit() {
       dataBaseServeces: getIt<DataBaseServeces>(),
     ),
   );
+
   getIt.registerSingleton<PostRepo>(
     PostRepoImple(
       dataBaseServeces: getIt<DataBaseServeces>(),

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:makani/core/entitys/ProductEntity.dart';
 import 'package:makani/core/helpes_function/getUser.dart';
+import 'package:makani/core/models/productModel.dart';
 import 'package:makani/core/uitels/App_Color.dart';
 import 'package:makani/core/uitels/App_TextStyle.dart';
 import 'package:makani/core/uitels/backend%20Impoint.dart';
-import 'package:makani/features/rate/presntation/manager/cubit/review_cubit.dart';
+import 'package:makani/features/rate/presntation/manager/cubit/addReview/review_cubit.dart';
+import 'package:makani/features/rate/presntation/manager/cubit/getReviews/get_reviews_cubit.dart';
 import 'package:makani/features/rate/presntation/viwes/widgets/textfileforcomment.dart';
 import 'package:rating_summary/rating_summary.dart';
 import '../../../../../constsns.dart';
@@ -16,7 +19,10 @@ import '../../../../../core/entitys/reviewPorductEntity.dart';
 import 'ListViewReviewItemWidget.dart';
 
 class RateViewBody extends StatefulWidget {
-  const RateViewBody({super.key, required this.productEntity});
+  const RateViewBody({
+    super.key,
+    required this.productEntity,
+  });
   final ProductEntity productEntity;
 
   @override
@@ -24,10 +30,18 @@ class RateViewBody extends StatefulWidget {
 }
 
 class _RateViewBodyState extends State<RateViewBody> {
-   late String commite ;
-   late double rate ;
+
+  @override
+  late String commite;
+  double rate = 4.1;
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  late ProductEntity _productEntity;
+@override
+  void initState() {
+    super.initState();
+    _productEntity= widget.productEntity;
+  }
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -52,18 +66,31 @@ class _RateViewBodyState extends State<RateViewBody> {
                     hinttext: "اكتب التعليق..",
                     textInputType: TextInputType.text,
                     onSaved: (value) {
-
-                      commite = value !;
+                      commite = value!;
                     },
                   ),
                   const SizedBox(
                     height: 24,
                   ),
-                  TextFileForComment(
-                    hinttext: "اخل تقييم من  1:5",
-                    textInputType: TextInputType.number,
-                    onSaved: (value) {
-                      rate = double.tryParse(value!)!;                    },
+                  RatingBar.builder(
+                    initialRating: rate,
+                    minRating: 1,
+                    direction: Axis.horizontal,
+                    allowHalfRating: true,
+                    itemCount: 5,
+                    itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    itemBuilder: (context, _) => const Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
+                    onRatingUpdate: (rating) {
+                      setState(() {
+                        rate = rating;
+                      });
+                    },
+                  ),
+                  const SizedBox(
+                    height: 24,
                   ),
                   TextButton(
                     onPressed: () {
@@ -72,7 +99,7 @@ class _RateViewBodyState extends State<RateViewBody> {
                     child: const Text(
                       'اضافه تقييم',
                       style: TextStyle(
-                        color:AppColor.kPrimaryColor, // أو اللون اللي تحبه
+                        color: AppColor.kPrimaryColor,
                       ),
                     ),
                   ),
@@ -91,8 +118,8 @@ class _RateViewBodyState extends State<RateViewBody> {
                     style: AppStyle.semibold13,
                   ),
                   RatingSummary(
-                    counter: widget.productEntity.ratigCount.toInt(),
-                    average: widget.productEntity.avgReting,
+                    counter: _productEntity.ratigCount.toInt(),
+                    average: _productEntity.avgReting,
                     showAverage: true,
                     counterFiveStars: 5,
                     counterFourStars: 4,
@@ -107,29 +134,34 @@ class _RateViewBodyState extends State<RateViewBody> {
           ),
         ),
         ListViewReviewItemWidget(
-          reviewporductEntity: widget.productEntity.reviews,
+          reviewporductEntity:_productEntity.reviews,
         )
       ],
     );
   }
 
-  void onpreessed(BuildContext context) {
-      if (formKey.currentState!.validate()) {
+  void onpreessed(BuildContext context)async {
+    if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       final review = ReviewporductEntity(
         name: getUser()!.name,
         revdescription: commite,
         image: 'https://example.com/image.jpg',
         ratting: rate,
-        data: DateFormat('yyyy-MM-dd HH:mm', 'en')
-            .format(DateTime.now()),
+        data: DateFormat('yyyy-MM-dd HH:mm', 'en').format(DateTime.now()),
       );
-    
-      context.read<ReviewCubit>().addReview(
-        review,
-        widget.productEntity.pID,
-        path: BackEndImpoint.productspath,
-      );
+// ممكن اشيل await وخليها ب then
+     await context.read<ReviewCubit>().addReview(
+            review,
+            widget.productEntity.pID,
+            path: BackEndImpoint.productspath,
+          );
+      setState(() {
+        _productEntity= _productEntity.copyWith(
+          reviews: [..._productEntity.reviews,review],
+          ratigCount: _productEntity.ratigCount+1,
+        );
+      });
     } else {
       setState(() {
         autoValidateMode = AutovalidateMode.always;

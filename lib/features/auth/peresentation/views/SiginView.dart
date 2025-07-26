@@ -30,7 +30,7 @@ class SiginView extends StatelessWidget {
                 BuildSnakBar(context, state.message,type: SnackbarType.error);
               }
             },
-            builder: (context, state) => CustoProgressHUD(
+            builder: (context, state) => CustomProgressHUD(
               isLoading: state is SigninLoading,
               child:  const SiginVeiwBody(),
             ),

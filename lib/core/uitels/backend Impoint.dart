@@ -5,7 +5,7 @@ class BackEndImpoint {
   static const addOrders = 'orders';
   static const getOrders = 'orders';
   static const getPosts = 'posts';
-
+  static const getRates = 'posts';
   static const addreview = 'reviews';
   static const isUserExist = 'users';
 }

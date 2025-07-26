@@ -19,6 +19,7 @@ abstract class ProductRepo {
   Future<Either<Failur, void>>addReview(
       {required ReviewporductEntity reviewporductEntity ,required String path,required String productId});
 
+  Future<Either<Failur,ProductEntity>>getReviews({required String productId});
 }
 
 

@@ -19,6 +19,4 @@ final class ReviewFaluir extends ReviewState {
 
 final class ReviewSuccesss extends ReviewState {
 
-
-  ReviewSuccesss();
 }

@@ -2,12 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../../../constsns.dart';
 import '../../../../../core/services/services/shardpreferance_Singlton.dart';
 import '../../../../../core/uitels/App_TextStyle.dart';
-import '../../../../../core/uitels/Screen_Size.dart';
+import '../../../../auth/peresentation/views/SiginView.dart';
 
 class PageViewItem extends StatelessWidget {
   const PageViewItem(
@@ -52,7 +50,7 @@ class PageViewItem extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     SharPref.setBool(kIsBordingViewSeen, true);
-                    // Navigator.of(context).pushReplacementNamed(SiginView.routeName);
+                     Navigator.of(context).pushReplacementNamed(SiginView.routeName);
                   },
                   child: Padding(
                     padding:  EdgeInsets.only(top: 40.h, right: 20.w),

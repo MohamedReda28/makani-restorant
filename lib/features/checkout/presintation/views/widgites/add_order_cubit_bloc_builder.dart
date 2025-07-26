@@ -13,7 +13,7 @@ class AddOrderCubitBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AddOrderCubit, AddOrderState>(
         builder: (context, state) {
-      return CustoProgressHUD(
+      return CustomProgressHUD(
           isLoading: state is AddOrderLoading, child: child);
     }, listener: (context, state) {
       if (state is AddOrderSuccess) {

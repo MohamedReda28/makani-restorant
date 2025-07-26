@@ -21,7 +21,7 @@ class ForgetpassViewBodyBuilder extends StatelessWidget {
           BuildSnakBar(context, state.messege);
         }
       },
-      builder: (context, state) => CustoProgressHUD(
+      builder: (context, state) => CustomProgressHUD(
         isLoading: state is ForgetpassLoading ? true : false,
         child: ForgetpassViewBody(),
       ),

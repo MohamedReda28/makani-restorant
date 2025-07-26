@@ -41,10 +41,69 @@ class FirestoerServeces implements DataBaseServeces {
     }
   }
 
+
+
+  @override
+  Future<bool> chackIfDataExist(
+      {required String path, required String documentId}) async {
+    final data = await firestore.collection(path).doc(documentId).get();
+    return data.exists;
+  }
+
+  @override
+  Future<void> updateData({
+    required String path,
+    required Map<String, dynamic> data,
+    String? documentId,
+    bool merge = false,
+  }) async {
+    final ref = firestore.collection(path);
+
+    if (documentId != null) {
+      await ref.doc(documentId).set(data, SetOptions(merge: merge));
+    } else {
+      await ref.add(data);
+    }
+  }
+
+  @override
+  Stream<dynamic> getDataStream({
+    required String path,
+    Map<String, dynamic>? query,
+    String? documentId,
+  }) async* {
+    if (documentId != null) {
+      // جلب مستند معين بناءً على ID
+      var docRef = firestore.collection(path).doc(documentId);
+      await for (var snapshot in docRef.snapshots()) {
+        if (snapshot.exists) {
+          yield [snapshot.data()]; // رجعه في ليست علشان تتماشى مع باقي الكود
+        } else {
+          yield []; // لو المستند مش موجود
+        }
+      }
+    } else {
+      // جلب كل المستندات مع تطبيق الفلاتر إن وجدت
+      Query<Map<String, dynamic>> data = firestore.collection(path);
+
+      if (query != null) {
+        data = _applyFiltering(data, query);
+        data = _applySearch(data, query);
+        data = _applySorting(data, query);
+        data = _applyLimit(data, query);
+      }
+
+      await for (var event in data.snapshots()) {
+        yield event.docs.map((e) => e.data()).toList();
+      }
+    }
+  }
+
+
   Query<Map<String, dynamic>> _applyFiltering(
-    Query<Map<String, dynamic>> query,
-    Map<String, dynamic> params,
-  ) {
+      Query<Map<String, dynamic>> query,
+      Map<String, dynamic> params,
+      ) {
     if (params['categoryField'] != null && params['categoryValue'] != null) {
       return query.where(
         params['categoryField'],
@@ -55,9 +114,9 @@ class FirestoerServeces implements DataBaseServeces {
   }
 
   Query<Map<String, dynamic>> _applySearch(
-    Query<Map<String, dynamic>> query,
-    Map<String, dynamic> params,
-  ) {
+      Query<Map<String, dynamic>> query,
+      Map<String, dynamic> params,
+      ) {
     if (params['searchField'] != null && params['keyword'] != null) {
       final field = params['searchField'];
       final keyword = params['keyword'];
@@ -67,9 +126,9 @@ class FirestoerServeces implements DataBaseServeces {
   }
 
   Query<Map<String, dynamic>> _applySorting(
-    Query<Map<String, dynamic>> query,
-    Map<String, dynamic> params,
-  ) {
+      Query<Map<String, dynamic>> query,
+      Map<String, dynamic> params,
+      ) {
     if (params['sortOption'] != null) {
       String sortOption = params['sortOption'];
       String orderByField = 'name';
@@ -106,35 +165,12 @@ class FirestoerServeces implements DataBaseServeces {
   }
 
   Query<Map<String, dynamic>> _applyLimit(
-    Query<Map<String, dynamic>> query,
-    Map<String, dynamic> params,
-  ) {
+      Query<Map<String, dynamic>> query,
+      Map<String, dynamic> params,
+      ) {
     if (params['limit'] != null) {
       return query.limit(params['limit']);
     }
     return query;
-  }
-
-  @override
-  Future<bool> chackIfDataExist(
-      {required String path, required String documentId}) async {
-    final data = await firestore.collection(path).doc(documentId).get();
-    return data.exists;
-  }
-
-  @override
-  Future<void> updateData({
-    required String path,
-    required Map<String, dynamic> data,
-    String? documentId,
-    bool merge = false,
-  }) async {
-    final ref = firestore.collection(path);
-
-    if (documentId != null) {
-      await ref.doc(documentId).set(data, SetOptions(merge: merge));
-    } else {
-      await ref.add(data);
-    }
   }
 }

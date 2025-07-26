@@ -172,7 +172,19 @@ class productRepoImpl implements ProductRepo {
 
       return const Right(null);
     } catch (e) {
-      return Left(ServerFailure('Failed to add review'));
+      return Left(ServerFailure('خطأ في اضافه التقييم'));
+    }
+  }
+
+  @override
+  Future<Either<Failur, ProductEntity>> getReviews({required String productId})async {
+    try{
+      final data = await dataBaseServeces.getData(path: BackEndImpoint.productspath,documentId: productId);
+      ProductModel productModel=ProductModel.fromJson(data);
+      ProductEntity productEntity =productModel.toEntity();
+      return Right(productEntity);
+    }catch (e){
+      return Left(ServerFailure('خطأ في عرض التقيمات'));
     }
   }
 
